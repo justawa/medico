@@ -12,7 +12,7 @@
           <div class="card-header">
             <h3 class="card-title">Update Profile</h3>
           </div>
-         <form action="{{ route('user.add')}}" method="post">
+         <form action="{{ route('user.store')}}" method="post">
 		     @csrf
 
              <div class="form-group">

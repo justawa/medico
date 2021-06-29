@@ -14,7 +14,12 @@ class UserController extends Controller
         $users = User::where('type', 'student')->get();
         return view('user.index', compact('users'));
     }
-	
+
+    public function create()
+    {
+        return $this->edit(new User());
+    }
+
 	public function edit(User $user)
     {
         //dd($user);
@@ -25,12 +30,12 @@ class UserController extends Controller
         //dd($detail);
         
         //return view('edit', compact('user', 'detail'));
-        return view('edit')->with(compact('detail', $detail))->with(compact('user',$user));
+        return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user));
         
             
     }
  
-    public function add(Request $req)
+    public function store(Request $req)
     {
         $details = new detail;
         
