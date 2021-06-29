@@ -26,7 +26,7 @@
                   @foreach($users as $user)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $user->name }}</td>
+                    <td><a href="{{ route('user.edit', $user) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>
                         @foreach($user->packages as $package)

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Models\detail;
+use App\Models\Detail;
 
 class UserController extends Controller
 {
@@ -22,15 +22,14 @@ class UserController extends Controller
 
 	public function edit(User $user)
     {
-        //dd($user);
+        // dd($user);
         $userId = $user->id;
 
         $detail = detail::select('*')->where('user_id', $userId)->get();
-        
-        //dd($detail);
-        
+        // dd($detail);
         //return view('edit', compact('user', 'detail'));
-        return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user));
+        return view('user.edit', compact('detail'))->withUser($user);
+        // return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user));
         
             
     }

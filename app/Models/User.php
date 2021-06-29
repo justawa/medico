@@ -60,9 +60,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsToMany(Package::class);
     }
-
+    /**
+     * The detail that belong to the user.
+     */
+    
     public function details()
     {
-        return $this->belongsToMany(detail::class);
+        return $this->belongsToMany(Detail::class);
     }
 }
