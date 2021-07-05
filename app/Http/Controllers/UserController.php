@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Detail;
+use App\Models\Package;
 
 class UserController extends Controller
 {
@@ -20,42 +21,42 @@ class UserController extends Controller
         return $this->edit(new User());
     }
 
-	public function edit(User $user)
+	public function edit( Request $req, User $user)
     {
-        // dd($user);
         $userId = $user->id;
-
         $detail = detail::select('*')->where('user_id', $userId)->get();
-        // dd($detail);
-        //return view('edit', compact('user', 'detail'));
-        return view('user.edit', compact('detail'))->withUser($user);
-        // return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user));
-        
-            
+        $packages = Package::get();
+         return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user))->with(compact('packages',$packages));
     }
+
+    
  
-    public function store(Request $req)
+    public function store(Request $req, User $user)
     {
-        $details = new detail;
-        
-        $details->Phone = $req->mobile;
-        $details->Gender = $req->gender;
-        $details->Qualification = $req->qualification;
-        $details->Address = $req->address;
-        $details->City = $req->city;
+        $details = new Detail;
+    
+        $details->phone = $req->mobile;
+        $details->gender = $req->gender;
+        $details->qualification = $req->qualification;
+        $details->address = $req->address;
+        $details->city = $req->city;
         $details->state = $req->state;
-        $details->Country = $req->country;
-        $details->Zipcode = $req->zipcode;
-        $details->Password = $req->pass;
+        $details->country = $req->country;
+        $details->zipcode = $req->zipcode;
         $details->user_id = $req->id;
         $details->save();
 
+        $packageUser =  User::find($details->user_id);
+        $packages = $req->package;
+        $itemCount = count($packages);
+        for($i=0; $i<$itemCount; $i++) {
+            $packageUser->packages()->attach($packages[$i]);
+        }
+
         return redirect('users');
-
-
     }
 
-   /* public function store(Request $req)
+   /* public function add(Request $req)
 	{
         
         $data= detail::join('users', 'Users.id', '=', 'details.user_id')
