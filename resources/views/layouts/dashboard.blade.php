@@ -159,7 +159,7 @@
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">AdminPanel</span>
     </a>
 
     <!-- Sidebar -->
@@ -170,7 +170,7 @@
           <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Saurav</a>
         </div>
       </div>
 
@@ -241,6 +241,37 @@
               </li>
             </ul>
           </li>
+
+          {{-- SauravRaj --}}
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Banner
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">1</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                {{-- <a href="{{ route('subject.create') }}" class="nav-link"> --}}
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New</p>
+                </a>
+              </li>
+             
+              <li class="nav-item">
+                {{-- <a href="{{ route('subject.index') }}" class="nav-link"> --}}
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+            {{-- SauravRaj --}}
+
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
