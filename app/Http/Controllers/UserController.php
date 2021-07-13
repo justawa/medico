@@ -21,7 +21,7 @@ class UserController extends Controller
         return $this->edit(new User());
     }
 
-	public function edit( Request $req, User $user)
+	public function edit(User $user)
     {
         $userId = $user->id;
         $detail = detail::select('*')->where('user_id', $userId)->get();
@@ -47,12 +47,41 @@ class UserController extends Controller
         $details->save();
 
         $packageUser =  User::find($details->user_id);
+       // dd($packageUser);
+       $pack = Package::select('id')->where('id' ,'>' ,0)->get();
+    
+       $allpack = array();
+       //dd($pack);
+       $i=0;
+       foreach($pack as $p)
+       {
+          $allpack[$i] = $p->id;
+          $packageUser->packages()->detach($p->id);
+          $i++;
+       }
+       //print_r($allpack);
         $packages = $req->package;
+       //print_r($packages);
+
         $itemCount = count($packages);
+        //dd($itemCount);
         for($i=0; $i<$itemCount; $i++) {
             $packageUser->packages()->attach($packages[$i]);
         }
-
+       /* $newSelectedPackage = array_diff($allpack, $packages);
+        
+        $detachPackage = array();
+        $j = 0;
+        foreach($newSelectedPackage as $index=>$value){
+            $detachPackage[$j] = $value;
+            $j++;
+        }
+    
+        $countItem = count($detachPackage);
+        for($i=0; $i < $countItem; $i++){
+            $packageUser->packages()->detach($detachPackage[$i]);
+            
+        }*/
         return redirect('users');
     }
 
