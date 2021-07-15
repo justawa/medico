@@ -256,7 +256,7 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="{{ route('poster.index') }}" class="nav-link">
+                <a href="{{ url('add-image')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add New</p>
                 </a>

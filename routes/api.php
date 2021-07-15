@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\HomeController;
 use App\Http\Controllers\Api\v1\PackageController;
 use App\Http\Controllers\Api\v1\StudentController;
+use App\Http\Controllers\PosterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,10 @@ Route::prefix('v1')->group(function () {
     });
 
 });
+
+Route::get('/add-image', [PosterController::class, 'create'])->name('poster.create');
+Route::post('/add-image', [PosterController::class, 'store']);
+Route::get('/showimage', [PosterController::class, 'list'])->name('poster.show');
+Route::get('edit-image/{id}', [PosterController::class, 'edit']); 
+Route::put('update-image/{id}',[PosterController::class, 'update']); 
+Route::get('delete-image/{id}', [PosterController::class, 'destroy']); 
