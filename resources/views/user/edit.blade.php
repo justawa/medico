@@ -50,7 +50,7 @@
       <div class="col-6">
       <form action="{{ route('user.store')}}" method="post">
 		     @csrf
-
+            
              <div class="form-group">
 			        <input type="text"  placeholder="Enter Your Name" hidden name="id" value="{{ $user->id}}" class="form-control"  autocomplete="off">
                    </div>
@@ -68,14 +68,14 @@
                 </div>
                 
 			    
-                
+             
                 
 
                  
                 
                  <div class="form-group ">
                    <label for="">Package</label>
-                   <select name="package[]" multiple class=" form-control @error('package') is-invalid @enderror">
+                   <select name="package[]" multiple class=" form-control @error('packages') is-invalid @enderror">
                     
                   @foreach($packages as $package)
                  
@@ -87,21 +87,21 @@
                   </div> 
 
 
-               @if(!$detail->isEmpty())
-               
+                
+                @if(!Empty($detail)); 
                <div class="form-group">
 				        <label>Phone</label>
-                @foreach($detail as $detail)
-                   <input type="text" class="form-control" placeholder="Enter Mobile Number" name="mobile" value="{{ $detail->phone }}" required autocomplete="off">
-                   @endforeach 
-               </div>
-               
+                 
+                   <input type="text" class="form-control" placeholder="Enter Mobile Number" name="phone" value="{{$detail->phone}}" required autocomplete="off">
                 
+               </div>
+              
                
 			          <div class="form-group" >
-			       <label>Select Gender</label>
+			          <label>Select Gender</label>
 
                 <select class="form-control @error('gender') is-invalid @enderror" name="gender" >
+                
                  <option @if($detail->gender == 'Male') selected  @endif  value = "Male">Male</option>
                  <option @if($detail->gender == 'Female') selected  @endif value = "Female">Female</option>
                  <option @if($detail->gender == 'Others') selected  @endif value = "Others">Others</option>
@@ -132,7 +132,7 @@
 				   
              <div class="form-group">
                <label>Address</label>
-                <textarea cols="5" rows="5" class="form-control" placeholder="Enter Your Address"  name="address" value="{{$detail->address}}" required autocomplete="off">{{ $detail->address}}</textarea>
+                <textarea cols="5" rows="5" class="form-control" placeholder="Enter Your Address"  name="address" required autocomplete="off">{{ $detail->address}}</textarea>
                 </div>
                
                    
@@ -163,12 +163,12 @@
 				<label>Zipcode</label>
                    <input type="text" class="form-control" placeholder="Enter Zipcode" id="city" name="zipcode" value="{{$detail->zipcode}}" required autocomplete="off">
                </div>
-               
-			   @else
+               @else
+			  
          
                <div class="form-group">
 				        <label>Phone</label>
-                   <input type="text" class="form-control" placeholder="Enter Mobile Number" name="mobile" value="" required autocomplete="off"> 
+                   <input type="text" class="form-control" placeholder="Enter Mobile Number" name="phone" value="" required autocomplete="off"> 
                </div>
                
                 
@@ -231,8 +231,8 @@
                </div>
                
 
-         @endif
-
+         
+               @endif
               
 			   
 			  

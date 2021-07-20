@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
+    /* @var array
+    */
+   protected $fillable = [
+       'ticket_id',
+       'summary',
+       'description',
+       'active',
+       'reply'
+   ];
+
+   public function user()
+    {
+    return $this->belongsTo('App\Models\User','user_id');
+    }
 }

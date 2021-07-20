@@ -11,7 +11,7 @@ class Question extends Model
 
     public function optionExplanation()
     {
-        return $this->options()->where('correct', 1)->value('description');
+      //  return $this->option()->where('correct', 1)->value('description');
     }
 
     // public function correctOption()
@@ -22,10 +22,10 @@ class Question extends Model
     /**
      * Get the optons for the question.
      */
-    public function options()
-    {
-        return $this->hasMany(Option::class);
-    }
+    // public function option()
+    // {
+    //     return $this->hasMany(Option::class);
+    // }
 
     /**
      * Get the subject that owns the question.
@@ -42,4 +42,6 @@ class Question extends Model
     {
         return $this->belongsToMany(Test::class)->withTimestamps();
     }
+
+    
 }

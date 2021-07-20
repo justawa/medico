@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                   <th>#</th>
@@ -61,4 +61,17 @@
   </div>
 </section>
 <!-- /.content -->
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+       // "scrollCollapse": true,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

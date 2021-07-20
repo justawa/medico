@@ -23,30 +23,32 @@ class UserController extends Controller
 
 	public function edit(User $user)
     {
-        $userId = $user->id;
-        $detail = detail::select('*')->where('user_id', $userId)->get();
+        $user_id = $user->id;
+        $detail = Detail::where('user_id',$user_id)->first();
+        //$detail = Detail::select('phone','gender','qualification','address','city','state','country','zipcode','user_id')->where('user_id', $userId)->first();
         $packages = Package::get();
-         return view('user.edit')->with(compact('detail', $detail))->with(compact('user',$user))->with(compact('packages',$packages));
+         return view('user.edit')->with('detail',$detail)->with('user',$user)->with('packages',$packages);
+         //->with(compact('details', $details))->with(compact('user',$user))->with(compact('packages',$packages));
     }
 
     
  
     public function store(Request $req, User $user)
     {
-        $details = new Detail;
+        $detail = new Detail;
     
-        $details->phone = $req->mobile;
-        $details->gender = $req->gender;
-        $details->qualification = $req->qualification;
-        $details->address = $req->address;
-        $details->city = $req->city;
-        $details->state = $req->state;
-        $details->country = $req->country;
-        $details->zipcode = $req->zipcode;
-        $details->user_id = $req->id;
-        $details->save();
+        $detail->phone = $req->phone;
+        $detail->gender = $req->gender;
+        $detail->qualification = $req->qualification;
+        $detail->address = $req->address;
+        $detail->city = $req->city;
+        $detail->state = $req->state;
+        $detail->country = $req->country;
+        $detail->zipcode = $req->zipcode;
+        $detail->user_id = $req->id;
+        $detail->save();
 
-        $packageUser =  User::find($details->user_id);
+        $packageUser =  User::find($detail->user_id);
        // dd($packageUser);
        $pack = Package::select('id')->where('id' ,'>' ,0)->get();
     
@@ -95,5 +97,13 @@ class UserController extends Controller
 		
 	}*/
 
+    // public function remove(User $user, $id)
+    // {  
+    //     dd($user);
+    //     $id = $user->id;
+    //     $user = User::where('id', $id)->first();
+    //                 $user->update(['user->packages->name' => null]);
+    //                 dd($user);
+    // }
 
 }

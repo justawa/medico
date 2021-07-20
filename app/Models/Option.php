@@ -9,6 +9,16 @@ class Option extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'option1',
+        'option2',
+        'option3',
+        'option4',
+        'question_id',
+        'description',
+        'correct'
+    ];
+
     /**
      * Get the question that owns the option.
      */
