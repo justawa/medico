@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                   <th>#</th>
@@ -27,7 +27,7 @@
                   @foreach($subjects as $subject)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><a href="{{ route('subject.edit', $subject) }}">{{ $subject->name }}</a></td>
+                    <td><a href="{{ route('subject.edit', $subject->id) }}">{{ $subject->name }}</a></td>
                     <td>{{ $subject->summary }}</td>
                     <td>{{ $subject->active ? 'Active' : 'Not Active' }}</td>
                     <td>
@@ -61,4 +61,16 @@
   </div>
 </section>
 <!-- /.content -->
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

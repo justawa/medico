@@ -24,11 +24,15 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required|string',
+            'question_name' => 'required|string',
             'level' => 'required|in:easy, medium, hard',
             'score' => 'required|numeric',
             'subject' => 'required|exists:subjects,id',
-            'option' => 'required|array|size:4',
+            'option1' => 'required|string',
+            'option2' => 'required|string',
+            'option3' => 'required|string',
+            'option4' => 'required|string',
+            
             "option.*"  => "required|string|distinct",
             'correct' => 'required|in: 0, 1, 2, 3',
         ];

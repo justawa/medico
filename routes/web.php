@@ -16,3 +16,4 @@ require __DIR__.'/question.php';
 require __DIR__.'/subject.php';
 require __DIR__.'/test.php';
 require __DIR__.'/user.php';
+require __DIR__.'/ticket.php';

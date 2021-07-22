@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                   <th>#</th>
@@ -26,13 +26,14 @@
                   @foreach($users as $user)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><a href="{{ route('user.edit', $user) }}">{{ $user->name }}</a></td>
+                    <td><a href="{{ route('user.edit', $user->id) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>
                         @foreach($user->packages as $package)
                         <li>{{ $package->name }}</li>
                         @endforeach
                     </td>
+                    
                   </tr>
                   @endforeach
                 @else
@@ -52,4 +53,17 @@
   </div>
 </section>
 <!-- /.content -->
+
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection
