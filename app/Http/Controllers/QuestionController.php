@@ -31,8 +31,8 @@ class QuestionController extends Controller
     {   
         $question_id = $question->id;
       
-       // $option = Option::first();
-        $option = Option::where('question_id', $question_id)->first();
+      // $option = Option::first();
+       $option = Option::where('question_id', $question_id)->first();
         
         $subjects = Subject::where('active', 1)->get();
         return view('question.create', compact('subjects','option'))->withQuestion($question);
@@ -40,33 +40,70 @@ class QuestionController extends Controller
 
     public function store(QuestionRequest $request)
     {    
-      //  return()
-        // dd($request->all());   
-       return $this->update($request, new Question(), new Option());
+        $question->content = $request->question_name;
+        $question->level = $request->level;
+        $question->score = $request->score;
+        $question->subject_id = $request->subject;
+        
+        if($question->save())
+        {
+           
+            $option->option1 = $request->option1;
+            $option->option2 = $request->option2;
+            $option->option3 = $request->option3;
+            $option->option4 = $request->option4;
+            $option->description = $request->explanation;
+            $option->correct = $request->correct;
+            $option->question_id = $question->id; 
+
+            $option->save();
+        }
+        return redirect()->back()->with('success', 'Added Successfully.');
     }
 
     public function update(QuestionRequest $request, Question $question, Option $option)
     {
 
         // dd($option);
+        
+
         $question->content = $request->question_name;
         $question->level = $request->level;
         $question->score = $request->score;
         $question->subject_id = $request->subject;
-       $result = $question->save();
-        //print_r($option);
         
+        if($question->save())
+        {
+            $option = Option::find($question);
+            $option = Option::where('question_id',$question->id)->first();
+            $option->option1 = $request->option1;
+            $option->option2 = $request->option2;
+            $option->option3 = $request->option3;
+            $option->option4 = $request->option4;
+            $option->description = $request->explanation;
+            $option->correct = $request->correct;
+            $option->question_id = $question->id; 
+
+            $option->save();
+        }
+     
          
-        $option->option1 = $request->option1;
-        $option->option2 = $request->option2;
-        $option->option3 = $request->option3;
-        $option->option4 = $request->option4;
-        $option->description = $request->explanation;
-        $option->correct = $request->correct;
-        $option->question_id = $question->id; 
         
-        //$question->save();
-        $option->save();
+        
+        
+        
+        // $option = Option::updateOrCreate(
+        //     [ $option->option1 = $request->option1,
+        //     $option->option2 = $request->option2,
+        //     $option->option3 = $request->option3,
+        //     $option->option4 = $request->option4,
+        //     $option->description = $request->explanation,
+        //     $option->correct = $request->correct,
+        //    // $option->question_id = $question->id
+        // ],
+        //     ['question_id' => $question->id]
+        // ); 
+
 
         
         return redirect()->back()->with('success', 'Updated Successfully.');

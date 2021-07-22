@@ -34,8 +34,10 @@ class UserController extends Controller
     
  
     public function store(Request $req, User $user)
-    {
-        $detail = new Detail;
+    {   
+        $detail = Detail::find($user);
+        $detail = Detail::where('user_id',$user->id)->first();
+      //  $detail = new Detail;
     
         $detail->phone = $req->phone;
         $detail->gender = $req->gender;
@@ -65,7 +67,7 @@ class UserController extends Controller
         $packages = $req->package;
        //print_r($packages);
 
-        $itemCount = count($packages);
+        $itemCount = count(array($packages));
         //dd($itemCount);
         for($i=0; $i<$itemCount; $i++) {
             $packageUser->packages()->attach($packages[$i]);
@@ -97,13 +99,6 @@ class UserController extends Controller
 		
 	}*/
 
-    // public function remove(User $user, $id)
-    // {  
-    //     dd($user);
-    //     $id = $user->id;
-    //     $user = User::where('id', $id)->first();
-    //                 $user->update(['user->packages->name' => null]);
-    //                 dd($user);
-    // }
+    
 
 }
