@@ -31,7 +31,7 @@
 <div class="topnav">
   <a href="#">Dashboard</a>
   <a href="#">Subscriptions</a>
-  <a href="{{ url('progress')}}">Progress</a>
+  <a href="{{ url('/progress')}}">Progress</a>
   <a href="#">My Ebooks</a>
   <a href="#">My Reports</a>
   <a class="active" href="#">My Profile</a>
@@ -49,6 +49,7 @@
     <div class="col-12">
     <div class = row>
     <div class="col-6">
+
        <form action="{{ route('user.store')}}" method="post">
   		     @csrf
             

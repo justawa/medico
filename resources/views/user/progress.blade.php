@@ -30,7 +30,7 @@
 <div class="topnav">
     <a href="#">Dashboard</a>
     <a href="#">Subscriptions</a>
-    <a class="active" href="{{ url('progress')}}"> Progress </a>
+    <a class="active" href="{{url('progress')}}"> Progress </a>
     <a href="#">My Ebooks</a>
     <a href="#">My Reports</a>
     <a  href="{{url('/users')}}">My Profile</a>
@@ -53,26 +53,47 @@
         <table id="dataTable" class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Package</th>
             <th scope="col">All User</th>
             </tr>
         </thead>
-
-        <tbody>
-          @foreach($packages as $package)
-          <tr>
-          <th scope="row">{{ $package->id }}</th>
-            <td>{{$package->name}}</td>
-            <td><Button href="">Click</Button></td>
-            {{-- @foreach($user->packages as $pkg) @if($package->id == $pkg->id)  @endif  @endforeach>{{ $package->name }} </option> --}}
-                
-           
-            @endforeach         
-          </tr>
+          <tbody>
+            @foreach($package as $package)
+            <tr>
+              <td>  <a href="">{{ $package->id }}</a>  </td>
+               <td>  <a href="">{{ $package->name }}</a>  </td>
+               <td>  </td>
+         
+              </tr>
+                @endforeach
           </tbody>
-          </table>     
-    
+       
+          </table> 
+          
+          <?php 
+          $c=0;
+          ?>
+
+         
+                  @foreach($progress as $progress)
+                  <tr>
+                  
+                    <td> {{$progress->user_id}}
+                    {{-- <?php   $c=$c+1; ?> --}}
+                    </td>
+
+                    <td> {{-- {{$progress->package_id}} --}}</td>
+                    
+                  </tr>
+                  @endforeach
+
+                 
+
+                  {{-- <?php 
+                  // echo "total student = ";
+                  // echo $c;
+                  ?> --}}
 </div> 
 </div>
 </div>

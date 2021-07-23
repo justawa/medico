@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Detail;
 use App\Models\Package;
+// use App\Models\package_user;
+use App\Models\package_user;
 
 class UserController extends Controller
 {
@@ -31,13 +33,49 @@ class UserController extends Controller
          //->with(compact('details', $details))->with(compact('user',$user))->with(compact('packages',$packages));
     }
 
-    public function progress(User $user)
-    {
+
+
+    public function progress(package_user $req ,User $user, Package $package)
+    {   
         $user_id = $user->id;
         $detail = Detail::where('user_id',$user_id)->first();
-       $packages = Package::get();
-         return view('user.progress')->with('detail',$detail)->with('user',$user)->with('packages',$packages);
+        $package = Package::get();
+      
+        $progress=array();
+        $pro=array();
+        $a=0;
+
+        foreach($package as $pkg) {
+            // echo $pkg->id;
+            // echo $pkg->user_id;
+            // echo $pkg->name;
+            // $pro[$a] =array(  $pkg->user_id ,  $pkg->name);
+            // $pro[$a] = $pkg->name;
+
+            // echo $pkg->id;
+            for($i=0;$i<count($package);$i++){
+
+            $progress = package_user::where('package_id',$pkg->id)->get();
+
         }
+                echo $progress->count();
+               
+               
+                // die();
+            $a++;
+        }
+        
+        print_r($pro);
+                die();
+    
+          
+          
+         
+        //  die();
+        return view('user.progress' , compact('progress'))->with('detail',$detail)->with('user',$user)->with('package',$package);;        
+       
+        }
+
 
     
  
@@ -78,40 +116,10 @@ class UserController extends Controller
         for($i=0; $i<$itemCount; $i++) {
             $packageUser->packages()->attach($packages[$i]);
         }
-       /* $newSelectedPackage = array_diff($allpack, $packages);
-        
-        $detachPackage = array();
-        $j = 0;
-        foreach($newSelectedPackage as $index=>$value){
-            $detachPackage[$j] = $value;
-            $j++;
-        }
-    
-        $countItem = count($detachPackage);
-        for($i=0; $i < $countItem; $i++){
-            $packageUser->packages()->detach($detachPackage[$i]);
-            
-        }*/
+      
         return redirect('users');
     }
 
-   /* public function add(Request $req)
-	{
-        
-        $data= detail::join('users', 'Users.id', '=', 'details.user_id')
-        ->select('details.*','users.*')->get();
-        
-        dd($data);
-		
-	}*/
-
-    // public function remove(User $user, $id)
-    // {  
-    //     dd($user);
-    //     $id = $user->id;
-    //     $user = User::where('id', $id)->first();
-    //                 $user->update(['user->packages->name' => null]);
-    //                 dd($user);
-    // }
+  
 
 }
