@@ -18,3 +18,7 @@ require __DIR__.'/test.php';
 require __DIR__.'/user.php';
 require __DIR__.'/banner.php';
 require __DIR__.'/poster.php';
+require __DIR__.'/payment.php';
+require __DIR__.'/user.php';
+require __DIR__.'/ticket.php';
+

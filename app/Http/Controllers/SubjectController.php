@@ -18,13 +18,17 @@ class SubjectController extends Controller
 
     public function create()
     {   
-        return $this->edit(new Subject());
+        
+       
+    //  return view('subject.create')->with('courses',Course::all())
+    //  ->with('subject', Subject::first());
+       return $this->edit(new Subject());
     }
 
     public function edit(Subject $subject)
     {
         $courses = Course::where('active', 1)->get();
-        return view('subject.create', compact('courses'))->withSubject($subject);
+        return view('subject.create', compact('courses'))->with('subject',$subject);
     }
 
     public function store(SubjectRequest $request) 
@@ -40,9 +44,9 @@ class SubjectController extends Controller
         $subject->course_id = $request->course;
         
         if($subject->save()) {
-            return redirect()->back()->with('success', 'Subject saved successfully');
+            return redirect()->back()->with('success', 'Subject update successfully');
         } else {
-            return redirect()->back()->with('failure', 'Failed to save subject');
+            return redirect()->back()->with('failure', 'Failed to update subject');
         }
     }
 
