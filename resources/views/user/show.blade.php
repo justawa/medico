@@ -53,31 +53,26 @@
         <table id="dataTable" class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Package</th>
-            <th scope="col">No. of User</th>
+            <th scope="col">S No.</th>
+                
             <th scope="col">All User</th>
 
             </tr>
         </thead>
           <tbody>
-            @foreach($progress as $progres)
-            <tr>
-              <td>  <a href="">{{ $progres->package_id }}</a>  </td>
-               <td>  <a href="">{{ $progres->name }}</a>  </td>
-               <td> {{ $progres->user_count }} </td>
-               {{-- <td> <a href="">{{ $progres->package_user_id }}</a>   </td> --}}
-
-               <td><a href="{{ route('user.show',$progres->package_id)}}"> Show </a></td>
-              </tr>
-                @endforeach
+              
+              @foreach ($users as $usr )
+              <tr>
+                  <td>{{$loop->iteration}}</td>
+                  <td>
+                       {{$usr->name}}</td>
+                      
+                    </tr>
+                      @endforeach
           </tbody>
          
                     {{-- <textarea class="form-control" id="reply" name="reply" placeholder="Type here..." cols="15" rows="6"></textarea> --}}
-                    {{-- @foreach ($users as $usr )
-                      
-                    <h4> {{$usr->name}} </h4>
-                    @endforeach --}}
+                  
 
 </table>             
 </div> 

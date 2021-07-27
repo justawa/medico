@@ -8,6 +8,8 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.ed
 Route::any('/users/{user}/update', [UserController::class, 'update'])->name('user.update');
 Route::view('/progress', 'user.progress')->name('user.progress');
 Route::any('/progress', [UserController::class, 'progress'])->name('user.progress');
+Route::any('/progressshow/{id}', [UserController::class, 'progressshow'])->name('user.show');
+
 // Route::get('/packages/{package}/', [UserController::class, 'progress'])->name('user.progress');
 
 

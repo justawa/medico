@@ -9,6 +9,7 @@ use App\Models\Detail;
 use App\Models\Package;
 // use App\Models\package_user;
 use App\Models\package_user;
+use DB;
 
 class UserController extends Controller
 {
@@ -42,38 +43,42 @@ class UserController extends Controller
         $package = Package::get();
       
         $progress=array();
-        $pro=array();
+        $users=array();
         $a=0;
+        $i=1;
 
-        foreach($package as $pkg) {
-            // echo $pkg->id;
-            // echo $pkg->user_id;
-            // echo $pkg->name;
-            // $pro[$a] =array(  $pkg->user_id ,  $pkg->name);
-            // $pro[$a] = $pkg->name;
+       $progress = package_user::select(DB::raw(' packages.id as package_id, packages.name, COUNT(*) AS user_count'))
+                    ->join('packages', 'packages.id', '=', 'package_user.package_id')
+                    ->groupBy('package_user.package_id')->get();
 
-            // echo $pkg->id;
-            for($i=0;$i<count($package);$i++){
 
-            $progress = package_user::where('package_id',$pkg->id)->get();
+                    // for($a=0;$a<4;$a++)
+                    // {
 
-        }
-                echo $progress->count();
-               
-               
-                // die();
-            $a++;
-        }
-        
-        print_r($pro);
-                die();
+                        
+                        $users = package_user::select(DB::raw(' users.id as user_id, users.name'))
+                        ->join('users', 'users.id', '=', 'package_user.user_id')
+                        ->where('package_user.package_id' , 1)
+                        ->get();
+                        // echo $users;
+                        // $i++;
+                      
+                    // }
     
           
           
          
         //  die();
-        return view('user.progress' , compact('progress'))->with('detail',$detail)->with('user',$user)->with('package',$package);;        
+        return view('user.progress' , compact('progress'))->with('users',$users)->with('package',$package);;        
        
+        }
+
+        public function progressshow($id){
+            $users = package_user::select(DB::raw(' users.id as user_id, users.name'))
+            ->join('users', 'users.id', '=', 'package_user.user_id')
+            ->where('package_user.package_id' , $id)
+            ->get();
+            return view('user.show', compact('users'));
         }
 
 
