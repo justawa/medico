@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Detail;
 use App\Models\Package;
+use App\Models\packageUser;
 
 class UserController extends Controller
 {
@@ -99,6 +100,28 @@ class UserController extends Controller
 		
 	}*/
 
+
+    public function package(Package $package,$id)
+    {
+        $pkg_id = $package->id ;
+        
+        $users = User::where('id', $id)->get();
+        
+        $pkg_users = packageUser::select(Package::raw('package_users.id as pkg_users_id, packages.id as package_id, packages.name as package_name, package_users.active'))
+                                    ->join('packages', 'packages.id', '=', 'package_users.package_id')
+                                    ->where('package_users.user_id', $id)
+                                    ->groupBy('package_users.package_id')->get();
+         
+        return view('user.package', compact('users','pkg_users'));
+    }
+
     
+    public function update_status(Request $request,$id)
+    {
+        packageUser::where('id',$id)->update(array('active' => $request->status));
+        
+        return redirect()->back()->with('success', 'Status updated successfully');  
+            
+    }
 
 }

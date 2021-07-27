@@ -19,6 +19,8 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Packages</th>
+                 <!-- <th>Status</th>
+                  <th>Action</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -30,12 +32,11 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         @foreach($user->packages as $package)
-                        <li>{{ $package->name }}</li>
+                          {{ $package->name }}
                         @endforeach
                     </td>
                     
-                  </tr>
-                  @endforeach
+                    @endforeach
                 @else
                   <tr>
                     <td colspan="5">No Data</td>

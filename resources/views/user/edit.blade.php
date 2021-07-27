@@ -31,6 +31,7 @@
 <div class="topnav">
   <a href="#">Dashboard</a>
   <a href="#">Subscriptions</a>
+  <a href="{{ route('user.package', $user->id) }}">Package</a>
   <a href="#">My Ebooks</a>
   <a href="#">My Reports</a>
   <a class="active" href="#">My Profile</a>

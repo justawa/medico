@@ -38,7 +38,7 @@ class QuestionController extends Controller
         return view('question.create', compact('subjects','option'))->withQuestion($question);
     }
 
-    public function store(QuestionRequest $request)
+    public function store(QuestionRequest $request, Question $question, Option $option)
     {    
         $question->content = $request->question_name;
         $question->level = $request->level;
