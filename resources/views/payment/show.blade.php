@@ -25,13 +25,16 @@
                      </tr>
               </thead>        
     
+             
+            
+
               <?php 
               $count=0;
               ?>
-            
+
              <tbody>
                     @foreach ($payment as $item)
-            
+
                 <tr>
                    <td>{{$count=$count+1}}</td> 
                    <td>{{$item->id}}</td>
@@ -41,7 +44,6 @@
                    <td>{{$item->amount }} </td> 
                    <td>{{$item->status }}</td>
                 </tr>
-                  
                 @endforeach
               </tbody>
 

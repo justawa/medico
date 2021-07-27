@@ -32,6 +32,7 @@
   <a href="#">Dashboard</a>
   <a href="#">Subscriptions</a>
   <a href="{{ url('/progress')}}">Progress</a>
+  <a href="{{ route('user.package', $user->id) }}">Package</a>
   <a href="#">My Ebooks</a>
   <a href="#">My Reports</a>
   <a class="active" href="#">My Profile</a>
@@ -46,21 +47,20 @@
 <section class="content">
     <div class="container-fluid">
     <div class="row">
-    <div class="col-12">
-    <div class = row>
-    <div class="col-6">
-
-       <form action="{{ route('user.store')}}" method="post">
-  		     @csrf
+      <div class="col-12">
+      <div class = row>
+      <div class="col-6">
+      <form action="{{ route('user.store', $user->id)}}" method="post">
+		     @csrf
             
-           <div class="form-group">
-		        <input type="text"  placeholder="Enter Your Name" hidden name="id" value="{{ $user->id}}" class="form-control"  autocomplete="off">
-              </div>
+             <div class="form-group">
+			        <input type="text"  placeholder="Enter Your Name" hidden name="id" value="{{ $user->id}}" class="form-control"  autocomplete="off">
+                   </div>
 			 
                <div class="form-group">
-			            <label class="col-form-label">Name</label>
-                  <input type="text"  placeholder="Enter Your Name"  name="name" value="{{ $user->name}}" class="form-control"  autocomplete="off">
-                </div>
+			         <label class="col-form-label">Name</label>
+                     <input type="text"  placeholder="Enter Your Name"  name="name" value="{{ $user->name}}" class="form-control"  autocomplete="off">
+                   </div>
                    
                 
                    
@@ -69,19 +69,18 @@
                      <input type="email" class="form-control" placeholder="Enter email"  name="email" value="{{ $user->email}}" autocomplete="off">
                 </div>
                 
-                
-              <div class="form-group ">
+                 <div class="form-group ">
                    <label for="">Package</label>
+                   <select name="package[]" multiple class=" form-control @error('packages') is-invalid @enderror">
+                    
+                  @foreach($packages as $package)
+                 
+                  <option value = "{{ $package->id }}"  @foreach($user->packages as $pkg) @if($package->id == $pkg->id) selected @endif  @endforeach>{{ $package->name }}</option>
                   
-                    <select name="package[]" multiple class=" form-control @error('packages') is-invalid @enderror"> 
-
-                      @foreach($packages as $package)
+                  @endforeach 
                   
-                       <option value = "{{ $package->id }}"  @foreach($user->packages as $pkg) @if($package->id == $pkg->id) selected @endif  @endforeach>{{ $package->name }} </option>
-                
-                       @endforeach  
-                       </select>
-              </div> 
+                </select>
+                  </div> 
 
 
                 
@@ -115,6 +114,7 @@
                 
                    </select>
                    </div>
+<<<<<<< HEAD
                  </div>
              
                  <div class="col-6 ">
@@ -127,6 +127,32 @@
 				       <label>City</label>
                 <input type="text" class="form-control" placeholder="Enter Your City" id="city" name="city" value="{{$detail->city}}" required autocomplete="off">      
               </div>
+=======
+
+                   
+				   
+                   
+                 
+				     
+      
+      </div>
+      <div class="col-6 ">
+      
+     
+				   
+             <div class="form-group">
+               <label>Address</label>
+                <textarea cols="5" rows="5" class="form-control" placeholder="Enter Your Address"  name="address" required autocomplete="off">{{ $detail->address}}</textarea>
+                </div>
+               
+                   
+               
+				   <div class="form-group">
+				      <label>City</label>
+               <input type="text" class="form-control" placeholder="Enter Your City" id="city" name="city" value="{{$detail->city}}" required autocomplete="off">
+                       
+               </div>
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
                
 			   
                
@@ -137,6 +163,7 @@
                
                
                
+<<<<<<< HEAD
 			          <div class="form-group">
 				           <label>Country</label>
                    <input type="text" class="form-control" placeholder="Enter Your Country" id="country" name="country" value="{{$detail->country}}" required autocomplete="off">
@@ -160,6 +187,33 @@
 			        <div class="form-group">
 			           <label>Select Gender </label>
                  <select class="form-control @error('gender') is-invalid @enderror" name="gender" >
+=======
+			       <div class="form-group">
+				   <label>Country</label>
+                   <input type="text" class="form-control" placeholder="Enter Your Country" id="country" name="country" value="{{$detail->country}}" required autocomplete="off">
+               </div>
+               
+			   
+               
+			     <div class="form-group">
+				<label>Zipcode</label>
+                   <input type="text" class="form-control" placeholder="Enter Zipcode" id="city" name="zipcode" value="{{$detail->zipcode}}" required autocomplete="off">
+               </div>
+               @else
+			  
+         
+               <div class="form-group">
+				        <label>Phone</label>
+                   <input type="text" class="form-control" placeholder="Enter Mobile Number" name="phone" value="" required autocomplete="off"> 
+               </div>
+               
+                
+               
+			      <div class="form-group">
+			          <label>Select Gender </label>
+
+                <select class="form-control @error('gender') is-invalid @enderror" name="gender" >
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
                  <option value = "Male">Male</option>
                  <option value = "Female">Female</option>
                  <option  value = "Others">Others</option>
@@ -167,6 +221,7 @@
               </div>
 
               <div class="form-group">
+<<<<<<< HEAD
                  <label>Qualification</label>
                  <select class="form-control @error('qualification') is-invalid @enderror"    name="qualification">
                     <option  value="Secondery Education">Secondery Education</option>
@@ -178,21 +233,44 @@
 				 </div>
         
         
+=======
+                   <label>Qualification</label>
+                   <select class="form-control @error('qualification') is-invalid @enderror" name="qualification">
+                   <option  value="Secondery Education">Secondery Education</option>
+                   <option  value="Graduation">Graduation</option>
+                   <option  value="Post Graduation">Post Graduation</option>
+                
+                   </select>
+                   </div>
+                    
+				 </div>
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
          <div class="col-6">
 
                  
 				 
+<<<<<<< HEAD
                  <div class="form-group">     
 				             <label>Address</label>
                      <textarea cols="5" rows="5" class="form-control" placeholder="Enter Your Address"  name="address" value="" required autocomplete="off"></textarea>
                   </div>
+=======
+                   <div class="form-group">     
+				           <label>Address</label>
+                   <textarea cols="5" rows="5" class="form-control" placeholder="Enter Your Address"  name="address" value="" required autocomplete="off"></textarea>
+                    </div>
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
                
                    
                
 				       <div class="form-group">
 				            <label>City</label>
                     <input type="text" class="form-control" placeholder="Enter Your City" id="city" name="city" value="" required autocomplete="off">
+<<<<<<< HEAD
                </div>
+=======
+                      </div>
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
                
 			   
                <div class="form-group">
@@ -204,12 +282,18 @@
                
 			       <div class="form-group">
 				        <label>Country</label>
+<<<<<<< HEAD
                <input type="text" class="form-control" placeholder="Enter Your Country" id="country" name="country" value="" required autocomplete="off">
              </div>
+=======
+                   <input type="text" class="form-control" placeholder="Enter Your Country" id="country" name="country" value="" required autocomplete="off">
+               </div>
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
                
 			   
                
 			     <div class="form-group">
+<<<<<<< HEAD
 			      	<label>Zipcode</label>
               <input type="text" class="form-control" placeholder="Enter Zipcode" id="city" name="zipcode" value="" required autocomplete="off">
             </div>
@@ -217,16 +301,42 @@
 
          
       @endif
+=======
+				<label>Zipcode</label>
+                   <input type="text" class="form-control" placeholder="Enter Zipcode" id="city" name="zipcode" value="" required autocomplete="off">
+               </div>
+               
+
+         
+               @endif
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
               
 			   
 			  
 				   
+<<<<<<< HEAD
 <button type="submit" class="btn btn-primary">update Profile</button>
 </div> 
 </div>
 </form>
 </div>
 </div>
+=======
+                 <button type="submit" class="btn btn-primary">update Profile</button>
+				 </div>
+                
+				
+      
+      
+         
+				</div>
+           </form>
+
+           </div>
+        </div>
+		   
+
+>>>>>>> abb3b495c780e9082fce20f0e5f2ee11863e13e0
 </div>		   
 </div>
 </div>

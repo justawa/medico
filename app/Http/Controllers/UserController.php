@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Detail;
 use App\Models\Package;
-// use App\Models\package_user;
 use App\Models\package_user;
+use App\Models\packageUser;
 use DB;
 
 class UserController extends Controller
@@ -24,7 +24,8 @@ class UserController extends Controller
         return $this->edit(new User());
     }
 
-	public function edit(User $user)
+
+    public function edit(User $user)
     {
         $user_id = $user->id;
         $detail = Detail::where('user_id',$user_id)->first();
@@ -84,47 +85,70 @@ class UserController extends Controller
 
     
  
-    public function store(Request $req, User $user)
-    {
-        $detail = new Detail;
+        public function store(Request $req, User $user)
+        {   
+            $detail = Detail::find($user);
+            $detail = Detail::where('user_id',$user->id)->first();
+          //  $detail = new Detail;
+        
+            $detail->phone = $req->phone;
+            $detail->gender = $req->gender;
+            $detail->qualification = $req->qualification;
+            $detail->address = $req->address;
+            $detail->city = $req->city;
+            $detail->state = $req->state;
+            $detail->country = $req->country;
+            $detail->zipcode = $req->zipcode;
+            $detail->user_id = $req->id;
+            $detail->save();
     
-        $detail->phone = $req->phone;
-        $detail->gender = $req->gender;
-        $detail->qualification = $req->qualification;
-        $detail->address = $req->address;
-        $detail->city = $req->city;
-        $detail->state = $req->state;
-        $detail->country = $req->country;
-        $detail->zipcode = $req->zipcode;
-        $detail->user_id = $req->id;
-        $detail->save();
-
-        $packageUser =  User::find($detail->user_id);
-       // dd($packageUser);
-       $pack = Package::select('id')->where('id' ,'>' ,0)->get();
+            $packageUser =  User::find($detail->user_id);
+           // dd($packageUser);
+           $pack = Package::select('id')->where('id' ,'>' ,0)->get();
+        
+           $allpack = array();
+           //dd($pack);
+           $i=0;
+           foreach($pack as $p)
+           {
+              $allpack[$i] = $p->id;
+              $packageUser->packages()->detach($p->id);
+              $i++;
+           }
+           //print_r($allpack);
+            $packages = $req->package;
+           //print_r($packages);
     
-       $allpack = array();
-       //dd($pack);
-       $i=0;
-       foreach($pack as $p)
-       {
-          $allpack[$i] = $p->id;
-          $packageUser->packages()->detach($p->id);
-          $i++;
-       }
-       //print_r($allpack);
-        $packages = $req->package;
-       //print_r($packages);
-
-        $itemCount = count($packages);
-        //dd($itemCount);
-        for($i=0; $i<$itemCount; $i++) {
-            $packageUser->packages()->attach($packages[$i]);
+            $itemCount = count(array($packages));
+            //dd($itemCount);
+            for($i=0; $i<$itemCount; $i++) {
+                $packageUser->packages()->attach($packages[$i]);
+            }
+        
+            return redirect('users');
         }
-      
-        return redirect('users');
-    }
 
-  
+        public function package(Package $package,$id)
+        {
+            $pkg_id = $package->id ;
+            
+            $users = User::where('id', $id)->get();
+            
+            $pkg_users = packageUser::select(Package::raw('package_users.id as pkg_users_id, packages.id as package_id, packages.name as package_name, package_users.active'))
+                                        ->join('packages', 'packages.id', '=', 'package_users.package_id')
+                                        ->where('package_users.user_id', $id)
+                                        ->groupBy('package_users.package_id')->get();
+             
+            return view('user.package', compact('users','pkg_users'));
+        }
+    
+        
+        public function update_status(Request $request,$id)
+        {
+            packageUser::where('id',$id)->update(array('active' => $request->status));
+            
+            return redirect()->back()->with('success', 'Status updated successfully');  
+                
+        }
 
 }
