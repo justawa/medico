@@ -40,7 +40,8 @@ class UserController extends Controller
     public function progress(package_user $req ,User $user, Package $package)
     {   
         $user_id = $user->id;
-        $detail = Detail::where('user_id',$user_id)->first();
+        // dd($user);
+        // die();
         $package = Package::get();
       
         $progress=array();
@@ -51,26 +52,10 @@ class UserController extends Controller
        $progress = package_user::select(DB::raw(' packages.id as package_id, packages.name, COUNT(*) AS user_count'))
                     ->join('packages', 'packages.id', '=', 'package_user.package_id')
                     ->groupBy('package_user.package_id')->get();
-
-
-                    // for($a=0;$a<4;$a++)
-                    // {
-
-                        
-                        $users = package_user::select(DB::raw(' users.id as user_id, users.name'))
-                        ->join('users', 'users.id', '=', 'package_user.user_id')
-                        ->where('package_user.package_id' , 1)
-                        ->get();
-                        // echo $users;
-                        // $i++;
-                      
-                    // }
-    
-          
           
          
         //  die();
-        return view('user.progress' , compact('progress'))->with('users',$users)->with('package',$package);;        
+        return view('user.progress' , compact('progress'))->with('user',$user)->with('package',$package);;        
        
         }
 
@@ -119,7 +104,7 @@ class UserController extends Controller
             $packages = $req->package;
            //print_r($packages);
     
-            $itemCount = count(array($packages));
+            $itemCount = count($packages);
             //dd($itemCount);
             for($i=0; $i<$itemCount; $i++) {
                 $packageUser->packages()->attach($packages[$i]);
@@ -128,18 +113,19 @@ class UserController extends Controller
             return redirect('users');
         }
 
-        public function package(Package $package,$id)
+        public function package(Package $package, User $user)
         {
             $pkg_id = $package->id ;
-            
-            $users = User::where('id', $id)->get();
+            // $user = User::where('id', $id)->get();
             
             $pkg_users = packageUser::select(Package::raw('package_users.id as pkg_users_id, packages.id as package_id, packages.name as package_name, package_users.active'))
-                                        ->join('packages', 'packages.id', '=', 'package_users.package_id')
-                                        ->where('package_users.user_id', $id)
-                                        ->groupBy('package_users.package_id')->get();
-             
-            return view('user.package', compact('users','pkg_users'));
+            ->join('packages', 'packages.id', '=', 'package_users.package_id')
+            ->where('package_users.user_id', $user->id)
+            ->groupBy('package_users.package_id')->get();
+            
+            // dd($user);
+            // die();
+            return view('user.package', compact('user','pkg_users'));
         }
     
         

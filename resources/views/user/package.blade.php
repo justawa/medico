@@ -27,11 +27,12 @@
 
 </style>
 <!-- Main content -->
-
+{{-- {{$user->id}} --}}
 <div class="topnav">
   <a href="#">Dashboard</a>
   <a href="#">Subscriptions</a>
-  <a class="active" href="#">Package</a>
+  <a href="{{ route('user.progress', $user->id) }}">Progress</a>
+  <a href="{{ route('user.package', $user->id) }}">Package</a>
   <a href="#">My Ebooks</a>
   <a href="#">My Reports</a>
   <a href="#">My Profile</a>

@@ -30,7 +30,8 @@
 <div class="topnav">
     <a href="#">Dashboard</a>
     <a href="#">Subscriptions</a>
-    <a class="active" href="{{url('progress')}}"> Progress </a>
+    <a class="active" href="{{ route('user.progress', $user->id) }}"> Progress </a>
+    <a href="{{ route('user.package', $user->id) }}">Package<a>
     <a href="#">My Ebooks</a>
     <a href="#">My Reports</a>
     <a  href="{{url('/users')}}">My Profile</a>
