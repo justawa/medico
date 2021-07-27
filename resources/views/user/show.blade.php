@@ -64,17 +64,12 @@
               @foreach ($users as $usr )
               <tr>
                   <td>{{$loop->iteration}}</td>
-                  <td>
-                       {{$usr->name}}</td>
+                  <td> {{$usr->name}}</td>
                       
                     </tr>
                       @endforeach
           </tbody>
-         
-                    {{-- <textarea class="form-control" id="reply" name="reply" placeholder="Type here..." cols="15" rows="6"></textarea> --}}
-                  
-
-</table>             
+        </table>             
 </div> 
 </div>
 </div>

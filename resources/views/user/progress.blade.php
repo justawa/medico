@@ -66,20 +66,11 @@
               <td>  <a href="">{{ $progres->package_id }}</a>  </td>
                <td>  <a href="">{{ $progres->name }}</a>  </td>
                <td> {{ $progres->user_count }} </td>
-               {{-- <td> <a href="">{{ $progres->package_user_id }}</a>   </td> --}}
-
                <td><a href="{{ route('user.show',$progres->package_id)}}"> Show </a></td>
               </tr>
                 @endforeach
           </tbody>
-         
-                    {{-- <textarea class="form-control" id="reply" name="reply" placeholder="Type here..." cols="15" rows="6"></textarea> --}}
-                    {{-- @foreach ($users as $usr )
-                      
-                    <h4> {{$usr->name}} </h4>
-                    @endforeach --}}
-
-</table>             
+          </table>             
 </div> 
 </div>
 </div>
