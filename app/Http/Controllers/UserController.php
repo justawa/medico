@@ -9,6 +9,8 @@ use App\Models\Detail;
 use App\Models\Package;
 use App\Models\package_user;
 use App\Models\packageUser;
+use App\Models\Ticket;
+
 use DB;
 
 class UserController extends Controller
@@ -66,9 +68,34 @@ class UserController extends Controller
             ->get();
             return view('user.show', compact('users'));
         }
+        public function ebook(User $user){
+
+            return view('user.ebook', )->with('user', $user);
 
 
-    
+        }
+
+        public function subscription(User $user){
+
+            $sub = DB::table('package_user')->where('user_id', $user->id)->get();
+
+            return view('user.subscription',compact('sub') )->with('user', $user);
+
+
+        }
+        public function report(User $user){
+
+            return view('user.report', )->with('user', $user);
+
+
+        }
+        
+        public function review(User $user){
+
+            return view('user.review', )->with('user', $user);
+
+
+        }
  
         public function store(Request $req, User $user)
         {   
@@ -128,7 +155,7 @@ class UserController extends Controller
             return view('user.package', compact('user','pkg_users'));
         }
     
-        
+
         public function update_status(Request $request,$id)
         {
             packageUser::where('id',$id)->update(array('active' => $request->status));
@@ -136,5 +163,45 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Status updated successfully');  
                 
         }
+
+
+        public function ticket(Ticket $ticket, User $user)
+        {
+            $tickets = Ticket::where('user_id', $user->id )->with('user')->get();
+            // $id = $user->id;
+            // $user = User::where('id', $id)->first();
+            // dd($tickets);
+            
+            return view('user.tickets', compact('tickets'))->with('user', $user);
+        }
+        
+       
+        public function sendReply(Request $request, $id)
+    { 
+        $ticket = Ticket::find($id);
+        
+       
+        $ticket->reply = $request->reply;
+      
+           
+            $ticket->save();
+            return redirect()->back()->with('success', 'Reply send successfully');
+        
+    }
+
+    public function ticket_status(Request $request, $id)
+    {
+        $ticket = Ticket::find($id);
+        if($ticket) {
+            $ticket->active = $request->status;
+            if($ticket->save()) {
+                return redirect()->back()->with('success', 'Status updated successfully');
+            } else {
+                return redirect()->back()->with('failure', 'Failed to update status');
+            }
+        } else {
+            return redirect()->back()->with('failure', 'Some error occured');
+        }
+    }
 
 }

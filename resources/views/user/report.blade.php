@@ -27,10 +27,19 @@
 }
 
 </style>
-
+<div class="topnav">
+    <a href="{{ route('user.index') }}">Dashboard</a>
+    <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
+    <a href="{{ route('user.progress', $user->id) }}">Progress</a>
+    <a href="{{ route('user.package', $user->id) }}">Package</a>
+    <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
+    <a class="active" href="#">My Reports</a>
+    <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>
+    <a href="{{ route('user.review', $user->id) }}">Reviews</a>
+    <a href="{{ route('user.tickets' ,$user->id ) }}">Student Tickets</a>
+  </div>
   <br>
-  <h2></h2>
-<hr></hr>
+ 
 
 <section class="content">
     <div class="container-fluid">
@@ -40,32 +49,14 @@
     <div class="col-12">
       <div class="card card-primary">
         <div class="card-header">
-        <h4 class="card-title"><strong>Progress</strong></h4>
+        <h4 class="card-title"><strong>Report</strong></h4>
     </div>
-       
        
       <div class="card-body">
 
-        <table id="dataTable" class="table table-striped">
-        <thead>
-            <tr>
-            <th scope="col">S No.</th>
-                
-            <th scope="col">All User</th>
+        <h4>Work In Progress..</h4>
 
-            </tr>
-        </thead>
-          <tbody>
-              
-              @foreach ($users as $usr )
-              <tr>
-                  <td>{{$loop->iteration}}</td>
-                  <td> {{$usr->name}}</td>
-                      
-                    </tr>
-                      @endforeach
-          </tbody>
-        </table>             
+                
 </div> 
 </div>
 </div>
