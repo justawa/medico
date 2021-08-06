@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Support Tickets')
+@section('title', 'DASHBOARD')
 @section('content')
 
 <style>
@@ -63,14 +63,15 @@
                         <tr >
                         {{-- <th scope="col">#</th> --}}
                         {{-- <th scope="col">Ticket ID</th> --}}
+                        {{-- <th scope="col">Title</th> --}}
+                        {{-- <th scope="col">Attachment</th> --}}
                         <th scope="col">Status</th>
                         <th scope="col">Query</th>
                         <th scope="col">User</th>
-                        {{-- <th scope="col">Title</th> --}}
-                        {{-- <th scope="col">Attachment</th> --}}
-                        <th scope="col">Action</th>
-                        <th scope="col">Response</th>
-
+                        <th scope="col">Case</th>
+                        <th scope="col">Reply</th>
+                        <th scope="col">New Reply</th>
+                        <th scope="col">All conversation</th>
                         <th></th>
                         </tr>
                     </thead>
@@ -79,23 +80,22 @@
                         @foreach($tickets as $ticket)
                         <tr>
 
+                            
                         {{-- <th scope="row">{{ $ticket->id }}</th> --}}
-
                         {{-- <td>{{ $ticket->ticket_id }}</td> --}}
-                        <td> <a class="btn btn-success btn-m"> {{ $ticket->active ? 'Open' : 'Closed'}} </a></td>
-                        <td>{{ $ticket->description }}</td>
-                        <td>{{ $ticket->user->name }}</td>
                         {{-- <td>{{ $ticket->title }}</td> --}}
                         {{-- <td>{{ $ticket->attachment }}</td> --}}
-
-
+                        <td style="color:green">{{ $ticket->active ? 'Open' : 'Closed'}}</td>
+                        <td>{{ $ticket->description }}</td>
+                        <td>{{ $ticket->user->name }}</td>
                         <td><a href="{{ route('user.update.status', $ticket->id) }}" class="btn btn-primary btn-sm" 
                           onclick="event.preventDefault();
                           document.getElementById('status-update-form{{ $ticket->id }}').submit();">
                         {{ $ticket->active ? 'Close' : 'Open' }}
                       </a>
 
-                      <form id="status-update-form{{ $ticket->id }}" action="{{ route('user.update.status', $ticket->id) }}" method="POST" style="display: none;">
+                      <form id="status-update-form{{ $ticket->id }}" action="{{ route('user.update.status', $ticket->id) }}" 
+                        method="POST" style="display: none;">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" name="status" value="{{ $ticket->active ? 0 : 1 }}" />
@@ -104,6 +104,7 @@
                       <td>{{$ticket->reply}}</td>
 
                       <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#replyTicket">Reply</button></td>
+                      <td><a href="{{ route('user.chat', $user->id)}}">View</a></td>
                         
                     </tr>     
                     <form class="form-group" action="{{ route('user.sendReply', $ticket->id) }}" method="POST">

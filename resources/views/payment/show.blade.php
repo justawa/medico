@@ -16,12 +16,14 @@
               <thead>
                 <tr>
                     <th>S.No</th>
-                    <th>ID</th>
-                    <th>Transaction ID </th>
-                    <th>Package ID </th>
-                    <th> Student ID </th>
+                    {{-- <th>ID</th> --}}
+                    <th> Transaction ID </th>
+                    <th> Package Name </th>
+                    <th> Student Name </th>
                     <th> Amount </th>
-                    <th> status </th>
+                    <th> Status </th>
+                    <th> Payment Time</th>
+
                      </tr>
               </thead>        
     
@@ -37,12 +39,17 @@
 
                 <tr>
                    <td>{{$count=$count+1}}</td> 
-                   <td>{{$item->id}}</td>
+                   {{-- <td>{{$item->id}}</td> --}}
                    <td>{{$item->tid }}</td>
                    <td> {{$item->pid}}</td>
                    <td>{{$item->studentid }}</td>
                    <td>{{$item->amount }} </td> 
-                   <td>{{$item->status }}</td>
+                   {{-- <td>{{$item->status }}</td> --}}
+                   <td>{{"Paid"}} </td> 
+                   <td>{{$item->created_at}} </td> 
+
+                   
+
                 </tr>
                 @endforeach
               </tbody>

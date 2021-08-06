@@ -14,6 +14,8 @@ Route::any('/ebook/{user}', [UserController::class, 'ebook'])->name('user.ebook'
 Route::any('/subscription/{user}', [UserController::class, 'subscription'])->name('user.subscription');
 Route::any('/report/{user}', [UserController::class, 'report'])->name('user.report');
 Route::any('/review/{user}', [UserController::class, 'review'])->name('user.review');
+Route::any('/chat/{user}', [UserController::class, 'chat'])->name('user.chat');
+
 
 
 

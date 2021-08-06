@@ -96,6 +96,14 @@ class UserController extends Controller
 
 
         }
+
+        public function chat(Ticket $ticket , User $user){
+            $tickets = Ticket::where('user_id', $user->id )->with('user')->get();
+
+            return view('user.chat', compact('tickets') )->with('user', $user);
+
+
+        }
  
         public function store(Request $req, User $user)
         {   
@@ -167,7 +175,7 @@ class UserController extends Controller
 
         public function ticket(Ticket $ticket, User $user)
         {
-            $tickets = Ticket::where('user_id', $user->id )->with('user')->get();
+            $tickets = Ticket::where('user_id', $user->id )->with('user')->oldest()->limit(1)->get();
             // $id = $user->id;
             // $user = User::where('id', $id)->first();
             // dd($tickets);
