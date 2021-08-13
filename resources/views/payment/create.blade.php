@@ -38,7 +38,6 @@
     <div class="form-group>
       <label class="col-form-label" for="status">status</label>
     <input type="hidden" class="form-control" name="status" value="1" required><br>
-
     </div>
    </div>
     <div class="card-footer">

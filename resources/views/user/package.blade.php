@@ -27,16 +27,17 @@
 
 </style>
 <!-- Main content -->
-
+{{-- {{$user->id}} --}}
 <div class="topnav">
-  <a href="#">Dashboard</a>
-  <a href="#">Subscriptions</a>
-  <a class="active" href="#">Package</a>
-  <a href="#">My Ebooks</a>
-  <a href="#">My Reports</a>
-  <a href="#">My Profile</a>
-  <a href="#">Reviews</a>
-  <a href="#">Student Tickets</a>
+  <a href="{{ route('user.index') }}">Dashboard</a>
+  <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
+  <a href="{{ route('user.progress', $user->id) }}">Progress</a>
+  <a  class="active" href="{{ route('user.package', $user->id) }}">Package</a>
+  <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
+  <a href="{{ route('user.report', $user->id) }}">My Reports</a>
+  <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>
+  <a href="{{ route('user.review', $user->id) }}">Reviews</a>
+  <a href="{{ route('user.tickets' , $user->id) }}">Student Tickets</a>
 </div>
 <br>
 
@@ -45,13 +46,16 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Package</h3>
-          </div>
+        <div class = row>
+          <div class="col-12">
+        
+          <div class="card card-primary">
+            <div class="card-header">
+            <h4 class="card-title"><strong>Package</strong></h4>
+        </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table id="dataTable" class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
@@ -67,11 +71,8 @@
                
                 <tr>
                  
-                    <td>{{ $loop->iteration }}</td>
-                    <td>
-                    
-                        {{ $pkg->package_name }} 
-                     </td>
+                    <td><a href="">{{ $loop->iteration }}</a></td>
+                    <td><a href=""> {{ $pkg->package_name }}</a></td>
                      
                      <td>{{ $pkg->active ? 'Active' : 'Not Active'}}</td>
                      <td><a href="{{ route('package.update.status',$pkg->pkg_users_id) }}" class="btn btn-default btn-sm" 

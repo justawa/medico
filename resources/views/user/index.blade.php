@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
-@section('title', 'All Tests')
+@section('title', 'DASHBOARD')
 @section('content')
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <div class="card">
+        <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">All Users</h3>
           </div>
@@ -19,8 +19,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Packages</th>
-                 <!-- <th>Status</th>
-                  <th>Action</th> -->
+                
                 </tr>
               </thead>
               <tbody>
@@ -36,7 +35,8 @@
                         @endforeach
                     </td>
                     
-                    @endforeach
+                  </tr>
+                  @endforeach
                 @else
                   <tr>
                     <td colspan="5">No Data</td>
