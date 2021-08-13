@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Ticket;
 use App\Models\userquery;
 use App\Models\User;
@@ -9,6 +10,11 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 // use App\Models\userquery;
+=======
+use Illuminate\Http\Request;
+
+use App\Models\userquery;
+>>>>>>> 1e3b6fe0d20df0167d0391cf14bf3d0f4e42e782
 
 class userquerycontroller extends Controller
 {
@@ -19,6 +25,7 @@ class userquerycontroller extends Controller
 
     public function store(Request $request)
     {   
+<<<<<<< HEAD
 
 
         $userquery = new Ticket();
@@ -65,3 +72,12 @@ class userquerycontroller extends Controller
     }
 }
 
+=======
+        $userquery = new userquery;
+        $userquery->userid = $request->input('userid');
+        $userquery->question = $request->input('question');
+        $userquery->save();
+            return redirect()->back()->with('status','Data Submitted');
+    }
+}
+>>>>>>> 1e3b6fe0d20df0167d0391cf14bf3d0f4e42e782

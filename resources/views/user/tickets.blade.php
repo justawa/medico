@@ -85,7 +85,11 @@
                         <td style="color:green">{{ $ticket->active ? 'Open' : 'Closed'}}</td>
                         <td>{{ $ticket->ticket_id }}</td>
                         <td>{{ $ticket->user->name }}</td>
+<<<<<<< HEAD
                         <td>{{ $ticket->subject }}</td>
+=======
+                        <td>{{ $ticket->title }}</td>
+>>>>>>> 1e3b6fe0d20df0167d0391cf14bf3d0f4e42e782
                         {{-- <td>{{ $ticket->attachment }}</td> --}}
                         <td>{{ $ticket->description }}</td>
                       

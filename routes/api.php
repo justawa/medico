@@ -71,7 +71,10 @@ Route::get('showpayment', [PaymentController::class, 'show'])->name('payment.sho
 
 Route::get('userquery', [userquerycontroller::class, 'create'])->name('chat.userquery');
 Route::post('userquery', [userquerycontroller::class, 'store']);
+<<<<<<< HEAD
 Route::get('userquery/{id}', [userquerycontroller::class, 'show']);
+=======
+>>>>>>> 1e3b6fe0d20df0167d0391cf14bf3d0f4e42e782
 
 
 // Users
