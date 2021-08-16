@@ -25,7 +25,6 @@
     <br>
     <div class="form-group>
       <label class="col-form-label" for="userid">userid</label>
-<<<<<<< HEAD
       <input type="hidden" class="form-control" name="user_id" value="1" required><br>
     </div>
     <div class="form-group>
@@ -39,17 +38,6 @@
    </div>
     <div class="card-footer">
       <button type="submit" class="btn btn-primary">CHECK</button> 
-=======
-    <input type="hidden" class="form-control" name="userid" value="1" required><br>
-    </div>
-    <div class="form-group>
-      <label class="col-form-label" for="question">question</label>
-    <input type="hidden" class="form-control" name="question" value="test" required><br>
-    </div>
-   </div>
-    <div class="card-footer">
-    <button type="submit" class="btn btn-primary">CHECK</button> 
->>>>>>> 1e3b6fe0d20df0167d0391cf14bf3d0f4e42e782
     </div>
 </form>
 
