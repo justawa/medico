@@ -8,7 +8,7 @@ Route::any('/users/{user}/store', [UserController::class, 'store'])->name('user.
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::any('/users/{user}/update', [UserController::class, 'update'])->name('user.update');
 
-Route::any('/progress/{user}', [UserController::class, 'progress'])->name('user.progress');
+Route::any('/progress', [UserController::class, 'progress'])->name('user.progress');
 Route::any('/progressshow/{id}', [UserController::class, 'progressshow'])->name('user.show');
 Route::any('/ebook/{user}', [UserController::class, 'ebook'])->name('user.ebook');
 Route::any('/subscription/{user}', [UserController::class, 'subscription'])->name('user.subscription');
