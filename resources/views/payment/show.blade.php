@@ -45,7 +45,15 @@
                    <td>{{$item->studentid }}</td>
                    <td>{{$item->amount }} </td> 
                    {{-- <td>{{$item->status }}</td> --}}
+                
+                   @if ($item->status ==1)
                    <td>{{"Paid"}} </td> 
+                     @else
+                     
+                   <td>{{"Failed"}} </td> 
+                         
+                     @endif
+                  
                    <td>{{$item->created_at}} </td> 
 
                    

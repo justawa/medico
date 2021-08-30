@@ -19,6 +19,12 @@ class TestController extends Controller
         return view('test.index', compact('tests'));
     }
 
+    public function list()
+    {
+        return Test::all();
+         
+    }
+
     public function create()
     {   
         return $this->edit(new Test());

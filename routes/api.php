@@ -6,22 +6,23 @@ use App\Http\Controllers\Api\v1\AuthController;
 use App\Http\Controllers\Api\v1\HomeController;
 use App\Http\Controllers\Api\v1\PackageController;
 use App\Http\Controllers\Api\v1\StudentController;
+use App\Http\Controllers\HeadlineController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AchieverController;
+use App\Http\Controllers\CounsellingController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userquerycontroller;
+use App\Http\Controllers\Noticecontroller;
 
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+
+
+
 Route::prefix('v1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
@@ -47,14 +48,54 @@ Route::prefix('v1')->group(function () {
 
 });
 
+
+
 //Banner Route 
 
 Route::get('/add-image', [PosterController::class, 'create'])->name('poster.create');
+
 Route::post('/add-image', [PosterController::class, 'store']);
 Route::get('/showimage', [PosterController::class, 'list'])->name('poster.show');
 Route::get('edit-image/{id}', [PosterController::class, 'edit']); 
 Route::put('update-image/{id}',[PosterController::class, 'update']); 
 Route::get('delete-image/{id}', [PosterController::class, 'destroy']); 
+
+Route::get('/headline', [HeadlineController::class, 'create'])->name('Headline.create');
+Route::post('/headline', [HeadlineController::class, 'store']);
+Route::get('/showhead', [HeadlineController::class, 'list'])->name('Headline.show');
+Route::get('edit-h/{id}', [HeadlineController::class, 'edit']); 
+Route::put('update-h/{id}',[HeadlineController::class, 'update']); 
+
+Route::get('/about', [AboutController::class, 'create'])->name('About.create');
+Route::post('/about', [AboutController::class, 'store']);
+Route::get('/showabout', [AboutController::class, 'list'])->name('About.show');
+Route::get('edit-a/{id}', [AboutController::class, 'edit']); 
+Route::put('update-a/{id}',[AboutController::class, 'update']); 
+
+// Achiever
+Route::get('/add-a', [AchieverController::class, 'create'])->name('pages/achiever.create');
+Route::post('/add-a', [AchieverController::class, 'store']);
+Route::get('/showa', [AchieverController::class, 'list'])->name('pages/achiever.show');
+Route::get('edit-a/{id}', [AchieverController::class, 'edit']); 
+Route::put('update-a/{id}',[AchieverController::class, 'update']); 
+Route::get('delete-a/{id}', [AchieverController::class, 'destroy']); 
+
+// Counselling
+Route::get('/add-c', [CounsellingController::class, 'create'])->name('pages/counselling.create');
+Route::post('/add-c', [CounsellingController::class, 'store']);
+Route::get('/showc', [CounsellingController::class, 'list'])->name('pages/counselling.show');
+Route::get('edit-c/{id}', [CounsellingController::class, 'edit']); 
+Route::put('update-c/{id}',[CounsellingController::class, 'update']); 
+Route::get('delete-c/{id}', [CounsellingController::class, 'destroy']); 
+
+// Notice
+Route::get('/add-n', [NoticeController::class, 'create'])->name('pages/notice.create');
+Route::post('/add-n', [NoticeController::class, 'store']);
+Route::get('/shown', [NoticeController::class, 'list'])->name('pages/notice.show');
+Route::get('edit-n/{id}', [NoticeController::class, 'edit']); 
+Route::put('update-n/{id}',[NoticeController::class, 'update']); 
+Route::get('delete-n/{id}', [NoticeController::class, 'destroy']); 
+
 
 // Payment Route
 
@@ -98,4 +139,5 @@ Route::get('/users/{user}/ticket', [UserController::class, 'ticket'])->name('use
 Route::patch('/tickets/{id}/reply', [UserController::class, 'sendReply'])->name('user.sendReply');
 Route::patch('/tickets/{id}/status', [UserController::class, 'ticket_status'])->name('user.update.status');
 
-
+// tests
+Route::get('/tests', [TestController::class, 'list'])->name('test.index');

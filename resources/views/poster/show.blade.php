@@ -18,9 +18,9 @@
                     <th>S.No</th>
                     <th>ID</th>
                     <th>title </th>
-                    <th>Category </th>
-                    <th> link </th>
-                    <th> description </th>
+                    {{-- <th>Category </th> --}}
+                    {{-- <th> link </th> --}}
+                    {{-- <th> description </th> --}}
                     <th>image </th>
                     <th> status </th>
                     <th>Action</th>
@@ -39,11 +39,15 @@
        <td>{{$count=$count+1}}</td> 
        <td>{{$item->id}}</td>
        <td>{{$item->title }}</td>
-       <td> {{$item->category}}</td>
-       <td>{{$item->link }}</td>
-       <td>{{$item->discription }} </td> 
+       {{-- <td> {{$item->category}}</td> --}}
+       {{-- <td>{{$item->link }}</td> --}}
+       {{-- <td>{{$item->discription }} </td>  --}}
        <td><img src="{{asset('uploads/banner/'.$item->profile_image)}} " width="100px" alt="image"></td>      
-       <td>{{$item->status }}</td>
+       @if ($item->status == 1)
+       <td>Active</td>
+         @else
+       <td>Deactive</td>
+       @endif
        <td> <a href="{{url('edit-image/'.$item->id)}}" class="btn btn-primary">Edit</a></td>
        <td> <a href="{{url('delete-image/'.$item->id)}}" class="btn btn-danger">Delete</a>   </td>
     </tr>
