@@ -22,4 +22,14 @@ require __DIR__.'/payment.php';
 require __DIR__.'/user.php';
 require __DIR__.'/ticket.php';
 require __DIR__.'/userquery.php';
+require __DIR__.'/headline.php';
+require __DIR__.'/about.php';
+require __DIR__.'/achiever.php';
+require __DIR__.'/counselling.php';
+require __DIR__.'/notice.php';
+
+
+
+
+
 

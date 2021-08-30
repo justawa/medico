@@ -273,13 +273,81 @@
                   <p>All</p>
                 </a>
               </li>
+
+              {{-- <li class="nav-item"> --}}
+                {{-- <a href="{{ route('Headline.show')}}" class="nav-link"> --}}
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
+                  {{-- <p>HeadLine</p> --}}
+                {{-- </a> --}}
+              {{-- </li> --}}
             </ul>
           </li>
 
         
               
              
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Pages
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">1</span> --}}
+              </p>
+            </a>
+            
+             <ol class="nav nav-treeview">
+              <a href="#" class="nav-link"> <i class="nav-icon fas fa-copy"></i><p>Notice <i class="fas fa-angle-left right"></i></p> </a>
+            
+              <ul class="nav nav-treeview"> 
+                <li class="nav-item">
+               <a href="{{ route('pages/notice.create')}}" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>Add</p>
+               </a>
+             </li> 
+           </ul>
 
+           <ul class="nav nav-treeview"> 
+            <li class="nav-item">
+           <a href="{{ route('pages/notice.show')}}" class="nav-link">
+             <i class="far fa-circle nav-icon"></i>
+             <p>All</p>
+           </a>
+         </li> 
+       </ul>
+              
+              </ol>
+
+
+              <ul class="nav nav-treeview"> 
+                 <li class="nav-item">
+                <a href="{{ route('About.show')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>About</p>
+                </a>
+              </li> 
+            </ul>
+
+            <ul class="nav nav-treeview"> 
+              <li class="nav-item">
+             <a href="{{ route('pages/achiever.show')}}" class="nav-link">
+               <i class="far fa-circle nav-icon"></i>
+               <p>Achiever</p>
+             </a>
+           </li> 
+         </ul>
+
+         <ul class="nav nav-treeview"> 
+          <li class="nav-item">
+         <a href="{{ route('pages/counselling.show')}}" class="nav-link">
+           <i class="far fa-circle nav-icon"></i>
+           <p>Counseller</p>
+         </a>
+       </li> 
+     </ul>
+        
+          </li>
             {{-- SauravRaj --}}
 
 
