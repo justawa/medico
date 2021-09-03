@@ -12,7 +12,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                   
@@ -20,7 +20,7 @@
                     <th>Name </th>
                     <th>image </th>
                     <th>Percentage </th>                 
-                    <th>Action</th>
+                    {{-- <th>Action</th> --}}
                     <th>Action</th>
                      </tr>
               </thead>        
@@ -34,7 +34,7 @@
        <td><img src="{{asset('Achiever/'.$item->profile_image)}} " width="100px" height="60px" alt="image"></td>      
        <td>{{$item->percent }}</td>
 
-       <td> <a href="{{url('edit-a/'.$item->id)}}" class="btn btn-primary">Edit</a></td>
+       {{-- <td> <a href="{{url('edit-a/'.$item->id)}}" class="btn btn-primary">Edit</a></td> --}}
        <td> <a href="{{url('delete-a/'.$item->id)}}" class="btn btn-danger">Delete</a>   </td>
     </tr>
       
@@ -42,4 +42,16 @@
   </tbody>
 </table>
 
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

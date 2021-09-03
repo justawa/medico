@@ -12,13 +12,14 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                     <th>S.No</th>
                     {{-- <th>ID</th> --}}
                     <th> Transaction ID </th>
                     <th> Package Name </th>
+                    <th> Student Id </th>
                     <th> Student Name </th>
                     <th> Amount </th>
                     <th> Status </th>
@@ -42,6 +43,7 @@
                    {{-- <td>{{$item->id}}</td> --}}
                    <td>{{$item->tid }}</td>
                    <td> {{$item->pid}}</td>
+                   <td>{{$item->student_id }}</td>
                    <td>{{$item->studentid }}</td>
                    <td>{{$item->amount }} </td> 
                    {{-- <td>{{$item->status }}</td> --}}
@@ -63,5 +65,21 @@
               </tbody>
 
 </table>
+          </div>
+<div class="card-footer">
+  <a href="export" class="btn btn-primary"><i class="fas fa-file-export"></i>Export In Excel</a>
 
+</div>
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

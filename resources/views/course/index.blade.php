@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'All Courses')
+@section('title', 'All Package')
 @section('content')
 <!-- Main content -->
 <section class="content">
@@ -8,7 +8,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">All Courses</h3>
+            <h3 class="card-title">All Package</h3>
             {{-- <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -20,7 +20,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
-            <table class="table table-head-fixed text-nowrap">
+            <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
                   <th>#</th>
@@ -28,6 +28,8 @@
                   <th>Summary</th>
                   <th>Status</th>
                   <th>Action</th>
+                  <th>Action</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -50,6 +52,7 @@
                         <input type="hidden" name="status" value="{{ $course->active ? 0 : 1 }}" />
                       </form>
                     </td>
+                    <td> <button  class="btn btn-danger"> <a href="{{url('delete-course/'.$course->id)}}"> Delete</a> </button></td>
                   </tr>
                   @endforeach
                 @else
@@ -69,4 +72,16 @@
   </div>
 </section>
 <!-- /.content -->
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

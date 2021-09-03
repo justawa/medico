@@ -16,10 +16,10 @@ class Test extends Model
      * @param  string  $value
      * @return void
      */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = strtolower($value);
-    }
+    // public function setNameAttribute($value)
+    // {
+    //     $this->attributes['name'] = strtolower($value);
+    // }
 
     /**
      * Set the test's slug.

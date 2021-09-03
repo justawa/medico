@@ -129,7 +129,7 @@ class StudentController extends Controller
     private function questionById($id)
     {
         $question = Question::find($id);
-        $question->load('options');
+        // $question->load('options');
 
         return $question;
     }

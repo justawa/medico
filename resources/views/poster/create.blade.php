@@ -34,7 +34,7 @@
       <label class="col-form-label" for="Image">Image</label>
       <input type="file" class="form-control" name="profile_image"required><br>
     </div>
-    <div class="form-group>
+    {{-- <div class="form-group>
       <label class="col-form-label" for="category">Category</label>
       <select name="category" class="form-control" required>
         <option value="" disabled selected>Choose option</option>
@@ -42,12 +42,12 @@
         <option value="2">Events</option>
         <option value="3">News</option>
     </select>
-    </div>
+    </div> --}}
     <br>
-    <div class="form-group>
+    {{-- <div class="form-group>
       <label class="col-form-label" for="discription">Description</label>
     <input type="text" class="form-control" name="discription"required><br>
-    </div>
+    </div> --}}
     <div class="form-group>
       <label class="col-form-label" for="status">status</label>
       <select name="status" class="form-control" required>

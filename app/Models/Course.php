@@ -16,10 +16,10 @@ class Course extends Model
      * @param  string  $value
      * @return void
      */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = strtolower($value);
-    }
+    // public function setNameAttribute($value)
+    // {
+    //     $this->attributes['name'] = strtolower($value);
+    // }
 
     /**
      * Set the course's slug.

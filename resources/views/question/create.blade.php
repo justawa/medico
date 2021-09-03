@@ -47,9 +47,9 @@
                   <div class="form-group @error('level') has-danger @enderror">
                       <label class="col-form-label" for="level">Level</label>
                       <select class="form-control @error('level') is-invalid @enderror" id="level" name="level">
-                          <option @if(old('level', $question->level) == "easy") selected="selected" @endif value="easy">Easy</option>
-                          <option @if(old('level', $question->level) == "medium") selected="selected" @endif value="medium">Medium</option>
-                          <option @if(old('level', $question->level) == "hard") selected="selected" @endif value="hard">Hard</option>
+                          <option @if(old('level', $question->level) == "easy") selected @endif value="easy">Easy</option>
+                          <option @if(old('level', $question->level) == "medium") selected @endif value="medium">Medium</option>
+                          <option @if(old('level', $question->level) == "hard") selected @endif value="hard">Hard</option>
                       </select>
                       @error('level') <span class="invalid-feedback">{{ $message }}</span> @enderror
                   </div>
@@ -92,13 +92,13 @@
 
                   <div class="form-group @error('correct') has-danger @enderror">
                       <label class="col-form-label" for="correct">Correct</label>
-                      <input type="text" class="form-control @error('correct') is-invalid @enderror" id="correct" name="correct" placeholder="Correct Answer" value="{{ old('correct', $option->correct) }}" required>
-                      <!-- <select class="form-control @error('correct') is-invalid @enderror" id="correct" name="correct">
+                      {{-- <input type="text" class="form-control @error('correct') is-invalid @enderror" id="correct" name="correct" placeholder="Correct Answer" value="{{ old('correct', $option->correct) }}" required> --}}
+                       <select class="form-control @error('correct') is-invalid @enderror" id="correct" name="correct">
                           <option @if(old('correct') == "1") selected @endif value="1">Option 1</option>
                           <option @if(old('correct') == "2") selected @endif value="2">Option 2</option>
                           <option @if(old('correct') == "3") selected @endif value="3">Option 3</option>
                           <option @if(old('correct') == "4") selected @endif value="4">Option 4</option>
-                      </select> -->
+                      </select> 
                       @error('correct') <span class="invalid-feedback">{{ $message }}</span> @enderror
                   </div>
 

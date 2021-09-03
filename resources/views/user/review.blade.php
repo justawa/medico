@@ -32,7 +32,7 @@
     <a href="{{ route('user.index') }}">Dashboard</a>
     <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
     {{-- <a href="{{ route('user.progress', $user->id) }}"> Progress </a> --}}
-    <a href="{{ route('user.package', $user->id) }}">Package</a>
+    <a href="{{ route('user.package', $user->id) }}">Courses</a>
     <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
     <a href="{{ route('user.report', $user->id) }}">My Reports</a>
     <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>

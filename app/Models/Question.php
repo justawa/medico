@@ -43,5 +43,10 @@ class Question extends Model
         return $this->belongsToMany(Test::class)->withTimestamps();
     }
 
+    public function options()
+    {
+        return $this->belongsToMany(Option::class)->withTimestamps();
+    }
+
     
 }

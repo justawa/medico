@@ -57,4 +57,11 @@ class CourseController extends Controller
             return redirect()->back()->with('failure', 'Some error occured');
         }
     }
+
+    public function destroy($id)
+    {
+        $course = Course::find($id);
+        $course->delete();
+        return redirect()->back()->with('success', 'Deleted successfully');
+    }
 }

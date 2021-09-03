@@ -224,7 +224,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Course
+                Package
                 <i class="fas fa-angle-left right"></i>
                 {{-- <span class="badge badge-info right">1</span> --}}
               </p>
@@ -342,6 +342,29 @@
          </ul>
                 
                 </ol>
+
+                <ol class="nav nav-treeview">
+                  <a href="#" class="nav-link"> <i class="nav-icon fas fa-copy"></i><p>Achiever <i class="fas fa-angle-left right"></i></p> </a>
+                
+                  <ul class="nav nav-treeview"> 
+                    <li class="nav-item">
+                   <a href="{{ route('pages/achiever.create')}}" class="nav-link">
+                     <i class="far fa-circle nav-icon"></i>
+                     <p>Add</p>
+                   </a>
+                 </li> 
+               </ul>
+    
+               <ul class="nav nav-treeview"> 
+                <li class="nav-item">
+               <a href="{{ route('pages/achiever.show')}}" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p>All</p>
+               </a>
+             </li> 
+           </ul>
+                  
+                  </ol>
   
 
               <ul class="nav nav-treeview"> 
@@ -353,14 +376,7 @@
               </li> 
             </ul>
 
-            <ul class="nav nav-treeview"> 
-              <li class="nav-item">
-             <a href="{{ route('pages/achiever.show')}}" class="nav-link">
-               <i class="far fa-circle nav-icon"></i>
-               <p>Achiever</p>
-             </a>
-           </li> 
-         </ul>
+           
         
           </li>
             {{-- SauravRaj --}}
@@ -455,12 +471,22 @@
             </a>
             <ul class="nav nav-treeview">   
               <li class="nav-item">
+                <a href="{{ route('user.newuser') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+            </ul>
+
+            <ul class="nav nav-treeview">   
+              <li class="nav-item">
                 <a href="{{ route('user.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All</p>
                 </a>
               </li>
             </ul>
+
           </li>
           {{-- <li class="nav-item has-treeview"> --}}
             {{-- <a href="#" class="nav-link"> --}}
@@ -499,6 +525,27 @@
               </li>
             </ul>
           </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Student Tickets
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">1</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="{{ route('tickets.show') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -988,7 +1035,7 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
         {{-- flash message --}}
-        @if( $errors->any() )
+        {{-- @if( $errors->any() )
         <div class="alert alert-dismissible alert-danger">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
           <ul style="margin: 0;">
@@ -997,7 +1044,7 @@
             @endforeach
           </ul>
         </div>
-        @endif
+        @endif --}}
         
         @if(\Session::has('success') || \Session::has('failure'))
         <div class="alert alert-dismissible {{ \Session::has('success') ? 'alert-success' : 'alert-danger' }}">

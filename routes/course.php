@@ -8,3 +8,4 @@ Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('c
 Route::put('/courses/{course}/update', [CourseController::class, 'update'])->name('course.update');
 
 Route::patch('/courses/{id}/status', [CourseController::class, 'update_status'])->name('course.update.status');
+Route::get('/delete-course/{id}', [CourseController::class, 'destroy']);

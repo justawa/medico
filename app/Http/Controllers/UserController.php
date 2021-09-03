@@ -27,7 +27,7 @@ class UserController extends Controller
     }
 
 
-    public function edit(User $user)
+    public function edit(User $user , Detail $detail , Package $packages)
     {
         $user_id = $user->id;
         $detail = Detail::where('user_id',$user_id)->first();
@@ -105,9 +105,52 @@ class UserController extends Controller
 
         }
  
-        public function store(Request $req, User $user)
+        public function store(Request $req, User $user )
         {   
-            $detail = Detail::find($user);
+            // $detail = Detail::find($user);
+            // $detail = Detail::where('user_id',$user->id)->first();
+          //  $detail = new Detail;
+            $detail = new Detail;
+            $detail->phone = $req->phone;
+            $detail->gender = $req->gender;
+            $detail->qualification = $req->qualification;
+            $detail->address = $req->address;
+            $detail->city = $req->city;
+            $detail->state = $req->state;
+            $detail->country = $req->country;
+            $detail->zipcode = $req->zipcode;
+            $detail->user_id = $req->id;
+            $detail->save();
+    
+            $packageUser =  User::find($detail->user_id);
+           // dd($packageUser);
+           $pack = Package::select('id')->where('id' ,'>' ,0)->get();
+        
+           $allpack = array();
+           //dd($pack);
+           $i=0;
+           foreach($pack as $p)
+           {
+              $allpack[$i] = $p->id;
+              $packageUser->packages()->detach($p->id);
+              $i++;
+           }
+           //print_r($allpack);
+            $packages = $req->package;
+           //print_r($packages);
+    
+            $itemCount = count($packages);
+            //dd($itemCount);
+            for($i=0; $i<$itemCount; $i++) {
+                $packageUser->packages()->attach($packages[$i]);
+            }
+        
+            return redirect('users');
+        }
+
+        public function update(Request $req, User $user)
+        {   
+            // $detail = Detail::find($user);
             $detail = Detail::where('user_id',$user->id)->first();
           //  $detail = new Detail;
         
@@ -147,6 +190,7 @@ class UserController extends Controller
         
             return redirect('users');
         }
+
 
         public function package(Package $package, User $user)
         {
@@ -211,5 +255,10 @@ class UserController extends Controller
             return redirect()->back()->with('failure', 'Some error occured');
         }
     }
+public function sideticket(){
+    
+    $users = User::where('type', 'student')->get();
+    return view('tickets.show', compact('users'));
+}
 
 }

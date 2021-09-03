@@ -47,11 +47,13 @@
           </div>
           <!-- /.card-body -->
         </div>
+        
         <!-- /.card -->
       </div>
     </div>
     <!-- /.row -->
   </div>
+  
 </section>
 <!-- /.content -->
 

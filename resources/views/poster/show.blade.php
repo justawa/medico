@@ -15,11 +15,11 @@
             <table class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
-                    <th>S.No</th>
+                    <th>Order</th>
                     <th>ID</th>
                     <th>title </th>
                     {{-- <th>Category </th> --}}
-                    {{-- <th> link </th> --}}
+                    <th> link </th>
                     {{-- <th> description </th> --}}
                     <th>image </th>
                     <th> status </th>
@@ -40,7 +40,7 @@
        <td>{{$item->id}}</td>
        <td>{{$item->title }}</td>
        {{-- <td> {{$item->category}}</td> --}}
-       {{-- <td>{{$item->link }}</td> --}}
+       <td>{{$item->link }}</td>
        {{-- <td>{{$item->discription }} </td>  --}}
        <td><img src="{{asset('uploads/banner/'.$item->profile_image)}} " width="100px" alt="image"></td>      
        @if ($item->status == 1)

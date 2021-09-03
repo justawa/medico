@@ -25,7 +25,7 @@ class QuestionRequest extends FormRequest
     {
         return [
             'question_name' => 'required|string',
-            'level' => 'required|in:easy, medium, hard',
+            'level' => 'required',
             'score' => 'required|numeric',
             'subject' => 'required|exists:subjects,id',
             'option1' => 'required|string',
@@ -34,7 +34,7 @@ class QuestionRequest extends FormRequest
             'option4' => 'required|string',
             
             "option.*"  => "required|string|distinct",
-            'correct' => 'required|in: 0, 1, 2, 3',
+            'correct' => 'required',
         ];
     }
 }

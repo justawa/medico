@@ -30,17 +30,17 @@
 
     
     </style>
-    <div class="topnav">
-        <a href="{{ route('user.index') }}">Dashboard</a>
-        <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
-        {{-- <a href="{{ route('user.progress', $user->id) }}"> Progress </a> --}}
-        <a href="{{ route('user.package', $user->id) }}">Package</a>
-        <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
-        <a href="{{ route('user.report', $user->id) }}">My Reports</a>
-        <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>
-        <a href="{{ route('user.review', $user->id) }}">Reviews</a>
-        <a  class="active" href="#">Student Tickets</a>
-      </div>
+   <div class="topnav">
+    <a href="{{ route('user.index') }}">Dashboard</a>
+    <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
+    {{-- <a href="{{ route('user.progress', $user->id) }}">Progress</a> --}}
+    <a href="{{ route('user.package', $user->id) }}">Courses</a>
+    <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
+    <a  href="#">My Reports</a>
+    <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>
+    <a href="{{ route('user.review', $user->id) }}">Reviews</a>
+    <a class="active" href="{{ route('user.tickets' ,$user->id ) }}">Student Tickets</a>
+  </div>
       <br>
    
     
@@ -61,17 +61,17 @@
                         <table class="table table-head-fixed text-nowrap">
                     <thead >
                         <tr >
-                        {{-- <th scope="col">#</th> --}}
-                        <th scope="col">Status</th>
-                        <th scope="col">Ticket ID</th>
+                       
+                        <th scope="col" text-center>Case</th>
+                        <th scope="col">ID</th>
                         <th scope="col">User</th>
                         <th scope="col">Subject</th>
-                        {{-- <th scope="col">Attachment</th> --}}
-                        <th scope="col">Query</th>
+                        <th scope="col" class="text-center">Query</th>
                         <th scope="col">Reply</th>
-                        <th scope="col">New Reply</th>
-                        <th scope="col">All conversation</th>
-                        <th scope="col">Case</th>
+                        <th scope="col">New</th>
+                        <th scope="col">All Chat</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
                         <th></th>
                         </tr>
                     </thead>
@@ -79,22 +79,29 @@
                     @if($tickets->count() > 0)
                         @foreach($tickets as $ticket)
                         <tr>
-
                             
-                        {{-- <th scope="row">{{ $ticket->id }}</th> --}}
-                        <td style="color:green">{{ $ticket->active ? 'Open' : 'Closed'}}</td>
+                        <td style="color:green">{{ $ticket->active}}</td>
                         <td>{{ $ticket->ticket_id }}</td>
                         <td>{{ $ticket->user->name }}</td>
-                        <td>{{ $ticket->title }}</td>
-                        {{-- <td>{{ $ticket->attachment }}</td> --}}
-                        <td>{{ $ticket->description }}</td>
-                      
-
-                      <td>{{$ticket->reply}}</td>
+                        <td>{{ $ticket->title }}</td>                
+                        <td>{{ $ticket->description }}</td>                      
+                        <td>{{$ticket->reply}}</td>
 
                       <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#replyTicket">Reply</button></td>
                       <td><a href="{{ route('user.chat', $user->id)}}">View</a></td>
-                      <td><a href="{{ route('user.update.status', $ticket->id) }}" class="btn btn-primary btn-sm" 
+                      <form action="{{ route('user.update.status', $ticket->id) }}" method="patch">
+                      <td>
+                              <select  name="status">
+                                  <option disabled selected>Choose</option>
+                                  <option value="open">OPEN</option>
+                                  <option value="close">CLOSE</option>
+                                  <option value="new">NEW</option>
+                              </select>
+                            </td>
+                            <td><button type="submit" class="btn btn-sm btn-primary">Update</button></td>
+                        </form>
+
+                      {{-- <td><a href="{{ route('user.update.status', $ticket->id) }}" class="btn btn-primary btn-sm" 
                         onclick="event.preventDefault();
                         document.getElementById('status-update-form{{ $ticket->id }}').submit();">
                       {{ $ticket->active ? 'Close' : 'Open' }}
@@ -105,7 +112,7 @@
                       @csrf
                       @method('PATCH')
                       <input type="hidden" name="status" value="{{ $ticket->active ? 0 : 1 }}" />
-                    </form></td>
+                    </form></td> --}}
                         
                     </tr>     
                     <form class="form-group" action="{{ route('user.sendReply', $ticket->id) }}" method="POST">

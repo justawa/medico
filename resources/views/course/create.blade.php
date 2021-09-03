@@ -1,11 +1,12 @@
 @extends('layouts.dashboard')
 
 @php
-  $title = "Add Course";
-  $button_text = "Add Course";
+  $title = "Add Package";
+  $button_text = "Add Package";
   if($course->exists) {
-    $title = "Edit Course";
-    $button_text = "Update Course";
+    $title = "Edit Package";
+    $button_text = "Update Package";
+    $button_text2 = "Delete Package";
   }
 @endphp
 
@@ -48,6 +49,7 @@
                   <button type="submit" class="btn btn-primary">
                     {{ $button_text }}
                   </button>
+                 
                 </div>
                 <!-- /.card-footer -->
             </form>

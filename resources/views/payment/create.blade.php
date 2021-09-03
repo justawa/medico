@@ -32,8 +32,14 @@
     </div>
     <br>
     <div class="form-group>
+      <label class="col-form-label" for="student_id">Student ID</label>
+      <input type="hidden" class="form-control" name="student_id" value="7" autocomplete="on" required><br>
+    </div>
+    <br>
+
+    <div class="form-group>
       <label class="col-form-label" for="amount">Amount</label>
-    <input type="hidden" class="form-control" name="amount" value="test" required><br>
+    <input type="hidden" class="form-control" name="amount" value="1" required><br>
     </div>
     <div class="form-group>
       <label class="col-form-label" for="status">status</label>

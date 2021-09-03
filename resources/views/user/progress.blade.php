@@ -41,7 +41,7 @@
        
       <div class="card-body table-responsive p-0" style="height: 60vh;">
 
-        <table id="dataTable" class="table table-striped">
+        <table id="dataTable" class="table table-head-fixed text-nowrap">
         <thead>
             <tr>
             <th scope="col">ID</th>
@@ -68,4 +68,16 @@
 </div>
 </div>		   
 </section>
+@endsection
+
+@section('scripts')
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+      });
+        });
+  </script>
 @endsection

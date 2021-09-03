@@ -36,7 +36,7 @@
     <input type="file" class="form-control" name="profile_image" value="{{$poster->profile_image}}" required><br>
     <img src="{{asset('uploads/banner/'.$poster->profile_image)}} " width="100px" alt="image">
     </div>
-    <div class="form-group>
+    {{-- <div class="form-group>
       <label class="col-form-label" for="category">Category</label><br>
       <select name="category" class="form-control"  " >
         <option value="{{$poster->category }}">Choose option</option>
@@ -44,11 +44,11 @@
         <option value="2">Events</option>
         <option value="3">News</option>
     </select>
-    </div>
-    <div class="form-group>
+    </div> --}}
+    {{-- <div class="form-group>
       <label class="col-form-label" for="discription">Description</label><br>
     <input type="text" class="form-control" name="discription"  value="{{$poster->discription }}"><br>
-    </div>
+    </div> --}}
     <div class="form-group>
       <label class="col-form-label" for="status">status</label><br>
       <select name="status" class="form-control">

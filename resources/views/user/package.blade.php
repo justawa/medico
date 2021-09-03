@@ -32,7 +32,7 @@
   <a href="{{ route('user.index') }}">Dashboard</a>
   <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
   {{-- <a href="{{ route('user.progress', $user->id) }}">Progress</a> --}}
-  <a  class="active" href="{{ route('user.package', $user->id) }}">Package</a>
+  <a  class="active" href="{{ route('user.package', $user->id) }}">Courses</a>
   <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
   <a href="{{ route('user.report', $user->id) }}">My Reports</a>
   <a  href="{{ route('user.edit', $user->id) }}">My Profile</a>
@@ -48,10 +48,10 @@
       <div class="col-12">
         <div class = row>
           <div class="col-12">
-        
+        {{-- Don't Confuse Earlier The name Of Courses was package. but now renamed --}}
           <div class="card card-primary">
             <div class="card-header">
-            <h4 class="card-title"><strong>Package</strong></h4>
+            <h4 class="card-title"><strong>Courses</strong></h4>
         </div>
           <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 60vh;">
@@ -60,7 +60,7 @@
                 <tr>
                   <th>#</th>
                   
-                  <th>Packages</th>
+                  <th>Courses</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>

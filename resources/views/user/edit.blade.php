@@ -31,7 +31,7 @@
   <a href="{{ route('user.index') }}">Dashboard</a>
   <a href="{{ route('user.subscription', $user->id) }}">Subscriptions</a>
   {{-- <a href="{{ route('user.progress', $user->id)}}">Progress</a> --}}
-  <a href="{{ route('user.package', $user->id) }}">Package</a>
+  <a href="{{ route('user.package', $user->id) }}">Courses</a>
   <a href="{{ route('user.ebook', $user->id) }}">My Ebooks</a>
   <a href="{{ route('user.report', $user->id) }}">My Reports</a>
   <a class="active" href="#">My Profile</a>
@@ -52,11 +52,15 @@
           </div>
          
 <div class="card-body">
-
-      <form action="{{ route('user.store', $user->id)}}" method="post">
+  @if(!Empty($detail))
+      <form action="{{ route('user.update',$user->id)}}" method="post">
+      @else
+      <form action="{{ route('user.store',$user->id)}}" method="post">
+      @endif
 		     @csrf
             
              <div class="form-group">
+            
 			        <input type="text"  placeholder="Enter Your Name" hidden name="id" value="{{ $user->id}}" class="form-control"  autocomplete="off">
              </div>
              <div class="col-6 ">
@@ -75,7 +79,7 @@
                 </div>
                 <div class="col-6 ">
               <div class="form-group ">
-                   <label class="col-form-label">Package </label>
+                   <label class="col-form-label">Courses </label>
 
                     @foreach($packages as $package)
                     <input name="package[]" type="checkbox"  value="{{ $package->id }}" @foreach($user->packages as $pkg) @if($package->id == $pkg->id) checked @endif  @endforeach>{{ $package->name }}

@@ -20,9 +20,6 @@ use App\Http\Controllers\userquerycontroller;
 use App\Http\Controllers\Noticecontroller;
 
 
-
-
-
 Route::prefix('v1')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
@@ -30,9 +27,8 @@ Route::prefix('v1')->group(function () {
     Route::get('/grand-tests', [HomeController::class, 'getGrandTest']);
 
 
-
+// Banner
     Route::get('/add-image', [PosterController::class, 'create'])->name('poster.create');
-
     Route::post('/add-image', [PosterController::class, 'store']);
     Route::get('/showimage', [PosterController::class, 'list'])->name('poster.show');
     Route::get('edit-image/{id}', [PosterController::class, 'edit']); 
@@ -105,10 +101,6 @@ Route::prefix('v1')->group(function () {
     Route::any('/review/{user}', [UserController::class, 'review'])->name('user.review');
     
     
-    
-    
-    
-    
     // User Package 
     Route::get('/users/{user}/package', [UserController::class, 'package'])->name('user.package');
     //Route::get('/users/{user}/package/remove', [UserController::class, 'removePackage'])->name('user.removePackage');
@@ -124,17 +116,17 @@ Route::prefix('v1')->group(function () {
 
 
 
-
+    
+    Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
     
     Route::group(['middleware' => 'jwt.verify'], function () {
         Route::post('/logout', [AuthController::class, 'logout']);
-
+        
         //students
         Route::post('/student/package/buy', [StudentController::class, 'buyPackage']);
         Route::get('/student/{id}/packages', [StudentController::class, 'getPackages']);
         Route::get('/student/packages/{id}/tests', [StudentController::class, 'getPackageTests']);
         Route::get('/student/test/{id}/attempt', [StudentController::class, 'createAttempt']);
-        Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
         Route::post('/student/attempt', [StudentController::class, 'storeAttemptDetails']);
         Route::put('/student/attempt/{id}/update', [StudentController::class, 'updateAttempt']);
         Route::post('/student/attempt-details/bookmark', [StudentController::class, 'bookmarkAttemptDetails']);
@@ -145,6 +137,3 @@ Route::prefix('v1')->group(function () {
 
 });
 
-
-
-//Banner Route 
