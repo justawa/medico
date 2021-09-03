@@ -42,11 +42,7 @@
                 <div class="col-6 ">                                 			   			  				   
                  <button type="submit" class="btn btn-primary">Add user</button>
 				        </div>
-                
-				
-      
-      
-         
+                         
 				</div>
            </form>
 

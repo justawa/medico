@@ -50,8 +50,7 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        $ticket =Ticket::all();
-        return view('user.ticket' , compact('ticket'));
+        //
     }
 
     /**
