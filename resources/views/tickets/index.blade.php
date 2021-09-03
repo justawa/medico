@@ -152,7 +152,7 @@
                         <th scope="row">{{ $ticket->id }}</th>
                         <td>{{ $ticket->ticket_id }}</td>
                         <td>{{ $ticket->user->name }}</td>
-                        <td>{{ $ticket->title }}</td>
+                        <td>{{ $ticket->subject }}</td>
                         <td>{{ $ticket->description }}</td>
                         <td>{{ $ticket->attachment }}</td>
                         <td>{{ $ticket->active ? 'Active' : 'Not Active'}}</td>
