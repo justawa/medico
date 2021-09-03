@@ -44,9 +44,9 @@
                       @error('question_name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                   </div>
 
-                  <div class="form-group @error('level') has-danger @enderror">
+                  <div class="form-group">
                       <label class="col-form-label" for="level">Level</label>
-                      <select class="form-control @error('level') is-invalid @enderror" id="level" name="level">
+                      <select class="form-control" id="level" name="level">
                           <option @if(old('level', $question->level) == "easy") selected @endif value="easy">Easy</option>
                           <option @if(old('level', $question->level) == "medium") selected @endif value="medium">Medium</option>
                           <option @if(old('level', $question->level) == "hard") selected @endif value="hard">Hard</option>

@@ -28,8 +28,9 @@ class QuestionController extends Controller
     }
 
     public function edit(Question $question)
-    {   
-        $question_id = $question->id;
+    {  
+       //dd($question);      
+       $question_id = $question->id;
       
       // $option = Option::first();
        $option = Option::where('question_id', $question_id)->first();
@@ -63,9 +64,6 @@ class QuestionController extends Controller
 
     public function update(QuestionRequest $request, Question $question, Option $option)
     {
-
-        // dd($option);
-        
 
         $question->content = $request->question_name;
         $question->level = $request->level;
