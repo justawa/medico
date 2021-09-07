@@ -45,7 +45,7 @@
                   </div>
 
                   <div class="form-group @error('level') has-danger @enderror">
-                      <label class="col-form-label" for="level">Level</label>
+                      <label class="col-form-label" for="level">Level {{$question->level}}</label>
                       <select class="form-control @error('level') is-invalid @enderror" id="level" name="level">
                           <option @if(old('level', $question->level) == "easy") selected @endif value="easy">Easy</option>
                           <option @if(old('level', $question->level) == "medium") selected @endif value="medium">Medium</option>

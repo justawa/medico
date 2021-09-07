@@ -19,6 +19,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Packages</th>
+                  <th>Action </th>
                 
                 </tr>
               </thead>
@@ -34,7 +35,20 @@
                           {{ $package->name }}
                         @endforeach
                     </td>
+
+                    <td>                  
+                      <a href="{{ route('user.update.status', $user->id) }}" class="btn btn-default btn-sm" 
+                        onclick="event.preventDefault();
+                        document.getElementById('status-update-form{{ $user->id }}').submit();">
+                      {{ $user->active ? 'Deactivate' : 'Activate' }}
+                    </a>
+                    <form id="status-update-form{{ $user->id }}" action="{{ route('user.update_active', $user->id) }}" method="POST" style="display: none;">
+                      @csrf
+                      @method('PATCH')
+                      <input type="hidden" name="status" value="{{ $user->active ? 0 : 1 }}" />
+                    </form>
                     
+                    </td>
                   </tr>
                   @endforeach
                 @else
