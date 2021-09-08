@@ -36,7 +36,20 @@ class UserController extends Controller
          return view('user.edit')->with('detail',$detail)->with('user',$user)->with('packages',$packages);
          //->with(compact('details', $details))->with(compact('user',$user))->with(compact('packages',$packages));
     }
-
+    public function update_active(Request $request, $id)
+    {
+        $user = user::find($id);
+        if($user) {
+            $user->active = $request->status;
+            if($user->save()) {
+                return redirect()->back()->with('success', 'Status updated successfully');
+            } else {
+                return redirect()->back()->with('failure', 'Failed to update status');
+            }
+        } else {
+            return redirect()->back()->with('failure', 'Some error occured');
+        }
+    }
 
 
     public function progress(package_user $req ,User $user, Package $package)

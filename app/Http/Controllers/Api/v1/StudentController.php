@@ -128,8 +128,11 @@ class StudentController extends Controller
 
     private function questionById($id)
     {
-        $question = Question::find($id);
-        // $question->load('options');
+        
+        $question = DB::table('questions')
+        ->where("questions.id",'=',$id)
+        ->join('options' , 'questions.id' , '=' , 'options.question_id')
+        ->get();
 
         return $question;
     }

@@ -13,6 +13,7 @@ Route::any('/newusers', [NewUserController::class, 'store'])->name('newuser.stor
 
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
 Route::any('/users/{user}/update', [UserController::class, 'update'])->name('user.update');
+Route::any('/users/{user}/useractive', [UserController::class, 'update_active'])->name('user.update_active');
 
 Route::any('/progress', [UserController::class, 'progress'])->name('user.progress');
 Route::any('/progressshow/{id}', [UserController::class, 'progressshow'])->name('user.show');
