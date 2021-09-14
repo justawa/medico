@@ -18,6 +18,8 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userquerycontroller;
 use App\Http\Controllers\Noticecontroller;
+use App\Http\Controllers\ShowPackage;
+
 
 
 Route::prefix('v1')->group(function () {
@@ -84,7 +86,9 @@ Route::prefix('v1')->group(function () {
     Route::get('userquery', [userquerycontroller::class, 'create'])->name('chat.userquery');
     Route::post('userquery', [userquerycontroller::class, 'store']);
     
-    
+    // packages
+    Route::get('/showpackage', [ShowPackage::class, 'list'])->name('package.show');
+
     // Users
     
     Route::get('/users', [UserController::class, 'index'])->name('user.index');

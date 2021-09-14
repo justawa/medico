@@ -45,7 +45,7 @@
         <thead>
             <tr>
             <th scope="col">ID</th>
-            <th scope="col">Package</th>
+            <th scope="col">Courses</th>
             <th scope="col">No. of User</th>
             <th scope="col">All User</th>
 

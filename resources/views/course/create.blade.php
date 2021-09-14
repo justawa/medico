@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
 @php
-  $title = "Add Package";
-  $button_text = "Add Package";
+  $title = "Add Course";
+  $button_text = "Add Course";
   if($course->exists) {
-    $title = "Edit Package";
-    $button_text = "Update Package";
-    $button_text2 = "Delete Package";
+    $title = "Edit Course";
+    $button_text = "Update Course";
+    $button_text2 = "Delete Course";
   }
 @endphp
 
@@ -31,6 +31,19 @@
               @endif
                 @csrf
                 <div class="card-body">
+                  <div class="form-group @error('course') has-danger @enderror">
+                    <label class="col-form-label" for="package">Package</label>
+                    <select class="form-control @error('package') is-invalid @enderror" id="package" name="package">
+                      
+                    @foreach($Packages as $package)
+                        <option @if(old('package', $course->package) == $package->id) selected @endif value="{{ $package->id }}">{{ $package->name }}</option>
+                        @endforeach
+                      
+                    </select>
+                    @error('package') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                </div>
+
+
                   <div class="form-group @error('name') has-danger @enderror">
                       <label class="col-form-label" for="name">Name</label>
                       <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $course->name) }}" placeholder="Course Name" required autofocus>
