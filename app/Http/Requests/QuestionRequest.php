@@ -26,7 +26,6 @@ class QuestionRequest extends FormRequest
         return [
             'question_name' => 'required|string',
             'level' => 'required',
-            'score' => 'required|numeric',
             'subject' => 'required|exists:subjects,id',
             'option1' => 'required|string',
             'option2' => 'required|string',

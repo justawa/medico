@@ -27,6 +27,11 @@ require __DIR__.'/about.php';
 require __DIR__.'/achiever.php';
 require __DIR__.'/counselling.php';
 require __DIR__.'/notice.php';
+require __DIR__.'/zoom.php';
+require __DIR__.'/package.php';
+
+
+
 
 
 

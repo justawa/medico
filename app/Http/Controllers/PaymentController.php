@@ -23,7 +23,7 @@ class PaymentController extends Controller
         $payment->tid = $tid;
         $payment->pid = $request->input('pid');
         $payment->studentid = $request->input('studentid');
-        $payment->studentid = $request->input('student_id');
+        $payment->student_id = $request->input('student_id');
         $payment->amount = $request->input('amount');
         $payment->status = $request->input('status');
         $payment->save();

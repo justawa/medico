@@ -27,6 +27,15 @@ class QuestionController extends Controller
        // return $this->edit(new Question());
     }
 
+    public function creat(Question $question, Option $option)
+    {   
+       
+        $subjects = Subject::where('active', 1)->get();
+        return view('question.imagetype', compact('subjects','question','option'));
+       
+    }
+
+
     public function edit(Question $question)
     {   
         $question_id = $question->id;
@@ -44,10 +53,9 @@ class QuestionController extends Controller
         $question->level = $request->level;
         $question->score = $request->score;
         $question->subject_id = $request->subject;
-        
+       
         if($question->save())
         {
-           
             $option->option1 = $request->option1;
             $option->option2 = $request->option2;
             $option->option3 = $request->option3;
@@ -60,6 +68,76 @@ class QuestionController extends Controller
         }
         return redirect()->back()->with('success', 'Added Successfully.');
     }
+
+
+    public function imgstor(QuestionRequest $request, Question $question, Option $option)
+    {                   
+        $question->subject_id = $request->subject;
+        $question->level = $request->level;
+        $question->score = $request->score;
+
+        if($request->hasfile('question_image'))
+        {
+            $file= $request->file('question_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('question/',$filename);
+            $question->question_image = $filename;
+            // $question->save();
+        }
+
+        if($question->save())
+        {
+          
+            $option->description = $request->input('explanation');
+            $option->correct = $request->input('correct');
+            $option->question_id = $question->id; 
+
+            if($request->hasfile('option1_image'))
+        {
+            $file= $request->file('option1_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('Option/',$filename);
+            $option->option1_image = $filename;
+        
+        }     
+        if($request->hasfile('option2_image'))
+        {
+            $file= $request->file('option2_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('Option/',$filename);
+            $option->option2_image = $filename;
+        
+        }     
+        if($request->hasfile('option3_image'))
+        {
+            $file= $request->file('option3_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('Option/',$filename);
+            $option->option3_image = $filename;
+        
+        }     
+        if($request->hasfile('option4_image'))
+        {
+            $file= $request->file('option4_image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('Option/',$filename);
+            $option->option4_image = $filename;
+        
+        }                   
+            $option->save();
+        }
+        return redirect()->back()->with('success', 'Added Successfully.');
+    }
+
+
+
+
+
 
     public function update(QuestionRequest $request, Question $question, Option $option)
     {
@@ -193,4 +271,6 @@ class QuestionController extends Controller
             return response()->json(['success' => false, 'questions' => []]);
         }
     }
+
+   
 }

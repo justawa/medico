@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
+use App\Models\Package;
+
 
 use App\Models\Course;
 
@@ -22,7 +24,8 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
-        return view('course.create')->withCourse($course);
+        $Packages = Package::where('active', 1)->get();
+        return view('course.create',compact('Packages'))->withCourse($course);
     }
 
     public function store(CourseRequest $request) 
@@ -35,6 +38,8 @@ class CourseController extends Controller
         $course->name = $request->name;
         $course->slug = $request->name;
         $course->summary = $request->summary;
+        $course->package = $request->package;
+
 
         if($course->save()) {
             return redirect()->back()->with('success', 'Course saved successfully');

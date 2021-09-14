@@ -1,14 +1,15 @@
 @extends('layouts.dashboard')
-@section('title', 'All Package')
+@section('title', 'All Courses')
 @section('content')
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <div class="card">
+        <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">All Package</h3>
+            <h3 class="card-title">All Courses</h3>
+          </div>
             {{-- <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -17,9 +18,8 @@
                 </div>
               </div>
             </div> --}}
-          </div>
           <!-- /.card-header -->
-          <div class="card-body table-responsive p-0" style="height: 60vh;">
+          <div class="card-body table-responsive p-0" style="height: 60vh">
             <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
@@ -33,6 +33,7 @@
                 </tr>
               </thead>
               <tbody>
+
                 @if($courses->count() > 0)
                   @foreach($courses as $course)
                   <tr>
