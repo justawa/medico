@@ -17,7 +17,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\userquerycontroller;
-use App\Http\Controllers\Noticecontroller;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\ShowPackage;
 
 
@@ -121,13 +121,13 @@ Route::prefix('v1')->group(function () {
 
 
     
-    Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
     
     Route::group(['middleware' => 'jwt.verify'], function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         
         //students
         Route::post('/student/package/buy', [StudentController::class, 'buyPackage']);
+        Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
         Route::get('/student/{id}/packages', [StudentController::class, 'getPackages']);
         Route::get('/student/packages/{id}/tests', [StudentController::class, 'getPackageTests']);
         Route::get('/student/test/{id}/attempt', [StudentController::class, 'createAttempt']);

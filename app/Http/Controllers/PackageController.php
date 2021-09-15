@@ -15,7 +15,8 @@ class PackageController extends Controller
     public function index()
     {
         $Packages = Package::all();
-        return view('package.show', compact('Packages'));
+        $subjects = Subject::where('active', 1)->get();
+        return view('package.show', compact('Packages','subjects'));
     }
 
     public function store(Request $request, Question $question, Subject $subject)
@@ -25,6 +26,8 @@ class PackageController extends Controller
         $Packages->type = $request->type;
         $Packages->no_of_question = $request->no_of_question;
         $Packages->price = $request->price;
+        $Packages->courseid = $request->course;
+
 
         $Packages->save();
        
@@ -35,14 +38,17 @@ class PackageController extends Controller
 
     public function create()
     {   
-       return view('package.create');
+        $Packages= Package::all();
+        $courses = Course::where('active', 1)->get();
+       return view('package.create',compact('Packages','courses'))->with('package',$Packages);
     
     }
 
     public function edit($id)
     {
+        $courses = Course::where('active', 1)->get();
         $Packages= Package::find($id);
-        return view('package.edit',compact('Packages'))->with('package',$Packages);
+        return view('package.edit',compact('Packages','courses'))->with('package',$Packages);
     }
     public function list()
     {
@@ -57,6 +63,8 @@ class PackageController extends Controller
         $Packages->type = $request->type;
         $Packages->no_of_question = $request->no_of_question;
         $Packages->price = $request->price;
+        $Packages->courseid = $request->course;
+
 
         $Packages->update();
        

@@ -22,6 +22,18 @@
                 @csrf
                 @method('PUT')
                <div class="card-body">
+                <div class="form-group @error('course') has-danger @enderror">
+                  <label class="col-form-label" for="course">Course</label>
+                  <select class="form-control @error('course') is-invalid @enderror" id="course" name="course">
+                    
+                  @foreach($courses as $course)
+                      <option @if(old('course', $Packages->courseid) == $course->id) selected @endif value="{{ $course->id }}">{{ $course->name }}</option>
+                      @endforeach
+                    
+                  </select>
+                  @error('course') <span class="invalid-feedback">{{ $message }}</span> @enderror
+              </div>
+
                 <div class="form-group @error('name') has-danger @enderror">
                     <label class="col-form-label" for="name">Name</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $Packages->name) }}" placeholder="Package Name" required>

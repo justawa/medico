@@ -17,6 +17,9 @@
                 <tr>
                   <th>#</th>
                   <th>Name</th>
+                  <th>Type</th>
+                  {{-- <th>Subjects</th> --}}
+
                   <th>Summary</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -29,6 +32,17 @@
                     <td>{{ $loop->iteration }}</td>
                     {{--  --}}
                     <td><a href="{{ route('package.edit', $package->id) }}">{{ $package->name }}</a></td>
+                    <td>{{$package->type}}</td>
+                    {{-- <td pre style="white-space:pre-wrap; word-wrap:break-word">
+                    @foreach($subjects as $subject)
+                    @if ( $package->courseid == $subject->course_id)
+                    <td>
+                      
+                      {{$subject->name}}
+                    </td>
+                    @endif                   
+                    @endforeach
+                  </td> --}}
                     <td><pre style="white-space:pre-wrap; word-wrap:break-word">{{ $package->summary }}</pre></td>
                     <td>{{ $package->active ? 'Active' : 'Not Active' }}</td>
                     <td>
