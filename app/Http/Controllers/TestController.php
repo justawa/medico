@@ -10,6 +10,7 @@ use App\Models\Package;
 use App\Models\Question;
 use App\Models\Subject;
 use App\Models\Test;
+use App\Models\Course;
 
 class TestController extends Controller
 {
@@ -17,6 +18,16 @@ class TestController extends Controller
     {
         $tests = Test::all();
         return view('test.index', compact('tests'));
+    }
+    public function index2()
+    {
+        $tests = Test::all();
+        return view('test.dd', compact('tests'));
+    }
+    public function index3()
+    {
+        $tests = Test::all();
+        return view('test.ran', compact('tests'));
     }
 
     public function list()
@@ -32,8 +43,28 @@ class TestController extends Controller
 
     public function edit(Test $test)
     {
+        $courses = Course::where('active', 1)->get();
+        $subjects = Subject::where('active', 1)->get();        
         $packages = Package::where('active', 1)->get();
-        return view('test.create', compact('packages'))->withTest($test);
+        return view('test.create', compact('packages','courses','subjects'))->withTest($test);
+    }
+    // dd
+    public function getAllQuestion(Test $test , $id){
+        
+        // $packages = DB::table('tests')
+        // ->where("id",'=',$id)
+        // ->join('packages', 'packages.id','=', 'tests.package_id')
+        // ->get();
+       
+        $raj = DB::table('question_test')
+        ->where("test_id",'=',$id)
+        ->join('questions' , 'question_test.question_id' , '=' , 'questions.id')
+        ->join('options' , 'questions.id' , '=' , 'options.question_id')        
+
+        ->get();
+        return view('test.ss',compact('raj'));
+        
+
     }
 
     public function store(TestRequest $request) 
@@ -43,15 +74,17 @@ class TestController extends Controller
 
     public function update(TestRequest $request, Test $test)
     {
+        $test->type = $request->type;
+        $test->package_id = $request->package;
+        $test->subjectid = $request->subject;
         $test->name = $request->name;
         $test->slug = $request->name;
         $test->summary = $request->summary;
         $test->total_questions = $request->total_questions;
+        // $test->preparation_question=$request->preparation_question;
         $test->score = $request->score;
         $test->duration = $request->duration;
-        $test->type = $request->type;
         $test->published = $request->published ?? 0;
-        $test->package_id = $request->package;
         
         if($test->save()) {
             return redirect()->back()->with('success', 'Test saved successfully');
@@ -106,5 +139,26 @@ class TestController extends Controller
         } else {
             return redirect()->back()->with('failure', 'Some error occured');
         }
+    }
+    public function randomData(Request $request){
+
+        // $testid= Test::all()->last();        
+        // $num=$testid->total_questions;
+        $id= $request->test;
+        $raj = DB::table('question_test')
+        // ->where("test_id",'=',1)
+        ->join('tests','question_test.test_id','=','tests.id')
+        ->get();
+        // dd($raj);
+        // $num=$request->number;
+
+
+        $result = $raj::all()
+    ->orderBy('id', 'desc')
+    ->take(400)
+    ->get()
+    ->random(3);
+    
+    return view('test.ran', compact('result','raj', 'subjects', 'tests','num'));
     }
 }

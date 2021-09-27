@@ -74,7 +74,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('user.index') }}" class="brand-link">
       <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">AdminPanel</span>
@@ -234,6 +234,43 @@
             </ul>
           </li>
          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Test
+                <i class="fas fa-angle-left right"></i>
+                {{-- <span class="badge badge-info right">1</span> --}}
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('test.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('test.questions') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Questions</p>
+                </a>
+              </li>
+              {{-- <li class="nav-item">
+                <a href="{{ route('test.ran') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Random Questions</p>
+                </a>
+              </li> --}}
+              <li class="nav-item">
+                <a href="{{ route('test.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+         
 
           {{-- SauravRaj --}}
 
@@ -372,36 +409,6 @@
             {{-- SauravRaj --}}
 
 
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Test
-                <i class="fas fa-angle-left right"></i>
-                {{-- <span class="badge badge-info right">1</span> --}}
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('test.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add New</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('test.questions') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Questions</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('test.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All</p>
-                </a>
-              </li>
-            </ul>
-          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

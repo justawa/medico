@@ -20,8 +20,12 @@
                   <th>#</th>
                   <th>Name</th>
                   <th>Summary</th>
+                  <th>Type</th>
+                  <th>Total Question </th>
+                  <th>Duration</th>
                   <th>Status</th>
                   <th>Action</th>
+                  <th>Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,6 +35,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td><a href="{{ route('test.edit', $test) }}">{{ $test->name }}</a></td>
                     <td>{{ $test->summary }}</td>
+                    <td>{{ $test->type }}</td>
+                    <td>{{ $test->total_questions }}</td>
+                    <td>{{ $test->duration }} minutes</td>
                     <td>{{ $test->active ? 'Active' : 'Not Active' }}</td>
                     <td>
                       <a href="{{ route('test.update.status', $test->id) }}" class="btn btn-default" 
@@ -44,8 +51,8 @@
                         <input type="hidden" name="status" value="{{ $test->active ? 0 : 1 }}" />
                       </form>
                     </td>
-                  </tr>
-                  @endforeach
+                    <td><a class="btn btn-primary" href="{{ route('test.dd', $test->id) }}">More Details</a></td>
+                   @endforeach
                 @else
                   <tr>
                     <td colspan="5">No Data</td>

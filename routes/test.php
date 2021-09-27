@@ -11,3 +11,13 @@ Route::patch('/tests/{id}/status', [TestController::class, 'update_status'])->na
 
 Route::get('test/questions', [TestController::class, 'test_questions'])->name('test.questions');
 Route::post('test/questions', [TestController::class, 'store_test_questions'])->name('test.questions.store');
+
+Route::get('/rantests', [TestController::class, 'index3'])->name('test.ran');
+Route::post('/rantests', [TestController::class, 'randomData'])->name('test.ran');
+
+// dd
+Route::get('/dd', [TestController::class, 'index2'])->name('test.dd');
+Route::get('/test/q/{id}', [TestController::class, 'getAllQuestion'])->name('test.dd');
+Route::get('/tes/ss/', [TestController::class, 'getAllQuestion'])->name('test.ss');
+
+

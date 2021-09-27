@@ -39,4 +39,8 @@ class Test extends Model
     {
         return $this->belongsToMany(Question::class)->withTimestamps();
     }
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class)->withTimestamps();
+    }
 }

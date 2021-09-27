@@ -24,15 +24,19 @@ class PackageController extends Controller
         $Packages = new Package;
         $Packages->name = $request->name;
         $Packages->type = $request->type;
-        $Packages->no_of_question = $request->no_of_question;
+        $Packages->mock = $request->mock;
+        $Packages->preparation = $request->preparation;
+        $Packages->duration = $request->duration;
         $Packages->price = $request->price;
         $Packages->courseid = $request->course;
+        $Packages->subjectid = $request->subject;
+
 
 
         $Packages->save();
        
        
-        return redirect()->back()->with('success', 'Added Successfully.');
+        return redirect()->back()->with('success', 'Package Added Successfully.');
     }
 
 
@@ -40,7 +44,8 @@ class PackageController extends Controller
     {   
         $Packages= Package::all();
         $courses = Course::where('active', 1)->get();
-       return view('package.create',compact('Packages','courses'))->with('package',$Packages);
+        $subjects = Subject::where('active', 1)->get();
+       return view('package.create',compact('Packages','courses','subjects'))->with('package',$Packages);
     
     }
 
@@ -61,15 +66,19 @@ class PackageController extends Controller
         $Packages= Package::find($id);
         $Packages->name = $request->name;
         $Packages->type = $request->type;
-        $Packages->no_of_question = $request->no_of_question;
+        $Packages->mock = $request->mock;
+        $Packages->preparation = $request->preparation;
+        $Packages->duration = $request->duration;
         $Packages->price = $request->price;
         $Packages->courseid = $request->course;
+        $Packages->subjectid = $request->subject;
+
 
 
         $Packages->update();
        
        
-        return redirect()->back()->with('success', 'Updated Successfully.');
+        return redirect()->back()->with('success', 'Package Updated Successfully.');
  
     }
 

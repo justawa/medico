@@ -28,7 +28,7 @@
     </div>
     <div class="form-group>
       <label class="col-form-label" for="link">Link</label>
-    <input type="text" class="form-control" name="link" autocomplete="on" required><br>
+    <input type="text" class="form-control" name="link" placeholder="Enter Full Link Path" autocomplete="on" required><br>
     </div>
     <div class="form-group>
       <label class="col-form-label" for="Image">Image</label>

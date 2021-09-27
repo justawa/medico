@@ -29,7 +29,7 @@
     </div>
     <div class="form-group>
       <label class="col-form-label" for="link">Link</label><br>
-    <input type="text" class="form-control" name="link"  value="{{$poster->link }}"><br>
+    <input type="text" class="form-control" name="link" placeholder="Enter Full Link Path" value="{{$poster->link }}"><br>
     </div>
     <div class="form-group>
       <label class="col-form-label" for="Image">Image</label><br>

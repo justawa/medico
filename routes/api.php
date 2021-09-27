@@ -117,9 +117,22 @@ Route::prefix('v1')->group(function () {
     // tests
     Route::get('/tests', [TestController::class, 'list'])->name('test.index');
     
+// Working Section after few changes name
+Route::get('/test/q/{id}', [StudentController::class, 'getTestById']);
 
 
+// Middleware Section
 
+Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
+Route::get('/student/{id}/packages', [StudentController::class, 'getPackages']);
+Route::get('/student/packages/{id}/tests', [StudentController::class, 'getPackageTests']);
+Route::get('/student/test/{id}/attempt', [StudentController::class, 'createAttempt']);
+Route::post('/student/attempt', [StudentController::class, 'storeAttemptDetails']);
+Route::put('/student/attempt/{id}/update', [StudentController::class, 'updateAttempt']);
+Route::post('/student/attempt-details/bookmark', [StudentController::class, 'bookmarkAttemptDetails']);
+Route::post('/student/detail/solution', [StudentController::class, 'detailSolution']);
+Route::get('/student/test/{id}/result', [StudentController::class, 'testResult']);
+Route::get('package/{id}', [PackageController::class, 'show']);
     
     
     Route::group(['middleware' => 'jwt.verify'], function () {
@@ -127,16 +140,7 @@ Route::prefix('v1')->group(function () {
         
         //students
         Route::post('/student/package/buy', [StudentController::class, 'buyPackage']);
-        Route::get('/student/questions/{id}', [StudentController::class, 'getQuestionById']);
-        Route::get('/student/{id}/packages', [StudentController::class, 'getPackages']);
-        Route::get('/student/packages/{id}/tests', [StudentController::class, 'getPackageTests']);
-        Route::get('/student/test/{id}/attempt', [StudentController::class, 'createAttempt']);
-        Route::post('/student/attempt', [StudentController::class, 'storeAttemptDetails']);
-        Route::put('/student/attempt/{id}/update', [StudentController::class, 'updateAttempt']);
-        Route::post('/student/attempt-details/bookmark', [StudentController::class, 'bookmarkAttemptDetails']);
-        Route::post('/student/detail/solution', [StudentController::class, 'detailSolution']);
-        Route::get('/student/test/{id}/result', [StudentController::class, 'testResult']);
-        Route::get('package/{id}', [PackageController::class, 'show']);
+       
     });
 
 });

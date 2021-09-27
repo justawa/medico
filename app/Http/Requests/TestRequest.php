@@ -24,11 +24,9 @@ class TestRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:191',
-            'total_questions' => 'required|numeric',
+            'name' => 'required|string|max:191',            
             'score' => 'required|numeric',
-            'duration' => 'required|string|max:191',
-            'type' => 'required|in:preparation,mock,grand',
+            'duration' => 'required|string|max:191',        
             'published' => 'boolean'
         ];
     }

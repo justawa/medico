@@ -61,10 +61,10 @@ class StudentController extends Controller
         // check for tests if they are published or not
         $tests = Package::find($id)->tests;
 
-        foreach($tests as $test) {
-            $attempt = Attempt::where(['user_id' => $request->user->id, 'test_id' => $test->id])->first();
-            $test->status = $attempt->status ?? 'started';
-        }
+        // foreach($tests as $test) {
+        //     $attempt = Attempt::where(['user_id' => $request->user->id, 'test_id' => $test->id])->first();
+        //     $test->status = $attempt->status ?? 'started';
+        // }
         return response()->json([
             'success' => true,
             'tests' => $tests
@@ -115,6 +115,27 @@ class StudentController extends Controller
         $questions = $test->questions()->take($limit)->get();
 
         return $questions;
+    }
+
+    public function getTestById(Request $request, $id)
+    {
+        $test = $this->testById($id);
+        return response()->json([
+            'success' => true,
+            'test' => $test
+        ], Response::HTTP_OK);
+    }
+    private function testById($id)
+    {
+        
+       
+        $test = DB::table('question_test')
+        ->where("test_id",'=',$id)
+        ->join('questions' , 'question_test.question_id' , '=' , 'questions.id')
+        ->join('options' , 'questions.id' , '=' , 'options.question_id')        
+        ->get();
+
+        return $test;
     }
 
     public function getQuestionById(Request $request, $id)

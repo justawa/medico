@@ -48,12 +48,37 @@
                   </select> 
                     @error('summary') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
-                <div class="form-group @error('name') has-danger @enderror">
+
+                <div class="form-group @error('mock') has-danger @enderror">
+                  <label class="col-form-label" for="mock"> Mock Question</label>
+                  <input type="text" class="form-control @error('name') is-invalid @enderror"
+                   id="mock" name="mock" placeholder="Total Number Mock Question" value="{{ old('name', $Packages->mock) }}" required>
+                  @error('mock') <span class="invalid-feedback">{{ $message }}</span> @enderror
+              </div>
+              <div class="form-group @error('preparation') has-danger @enderror">
+                <label class="col-form-label" for="preparation"> Preparation Question</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                 id="preparation" name="preparation" placeholder="Total Number Of Preparation Question" value="{{ old('name', $Packages->preparation) }}" required>
+                @error('preparation') <span class="invalid-feedback">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group @error('duration') has-danger @enderror">
+              <label class="col-form-label" for="duration"> Duration</label>
+              <input type="text" class="form-control @error('name') is-invalid @enderror"
+               id="duration" name="duration" placeholder="Total Duration Of Package" value="{{ old('name', $Packages->duration) }}" required>
+              @error('duration') <span class="invalid-feedback">{{ $message }}</span> @enderror
+          </div>
+
+
+
+
+
+
+                {{-- <div class="form-group @error('name') has-danger @enderror">
                     <label class="col-form-label" for="name">No Of Question</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                      id="no_of_question" name="no_of_question" value="{{ old('no_of_question', $Packages->no_of_question) }}" required>
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
-                </div>
+                </div> --}}
                 <div class="form-group @error('name') has-danger @enderror">
                   <label class="col-form-label" for="name">Price</label>
                   <input type="text" class="form-control @error('name') is-invalid @enderror"

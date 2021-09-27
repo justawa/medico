@@ -53,6 +53,7 @@ class QuestionController extends Controller
         $question->level = $request->level;
         $question->score = $request->score;
         $question->subject_id = $request->subject;
+        $question->imagestatus = $request->questionCategory;
        
         if($question->save())
         {
@@ -66,15 +67,18 @@ class QuestionController extends Controller
 
             $option->save();
         }
-        return redirect()->back()->with('success', 'Added Successfully.');
+        return redirect()->back()->with('success', 'Question Added Successfully.');
     }
 
 
     public function imgstor(QuestionRequest $request, Question $question, Option $option)
     {                   
+        $question=new question;
+        $option= new option;
         $question->subject_id = $request->subject;
         $question->level = $request->level;
         $question->score = $request->score;
+        $question->imagestatus = $request->questionCategory;
 
         if($request->hasfile('question_image'))
         {
@@ -83,7 +87,7 @@ class QuestionController extends Controller
             $filename = time().'.'.$extension;
             $file->move('question/',$filename);
             $question->question_image = $filename;
-            // $question->save();
+            $question->save();
         }
 
         if($question->save())
@@ -95,43 +99,43 @@ class QuestionController extends Controller
 
             if($request->hasfile('option1_image'))
         {
-            $file= $request->file('option1_image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('Option/',$filename);
-            $option->option1_image = $filename;
+            $file1= $request->file('option1_image');
+            $extension1 = $file1->getClientOriginalExtension();
+            $filename1 = time().'.'.$extension1;
+            $file1->move('Option/',$filename1);
+            $option->option1_image = $filename1;
         
         }     
         if($request->hasfile('option2_image'))
         {
-            $file= $request->file('option2_image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('Option/',$filename);
-            $option->option2_image = $filename;
+            $file2= $request->file('option2_image');
+            $extension2 = $file2->getClientOriginalExtension();
+            $filename2 = time().'.'.$extension2;
+            $file2->move('Option/',$filename2);
+            $option->option2_image = $filename2;
         
         }     
         if($request->hasfile('option3_image'))
         {
-            $file= $request->file('option3_image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('Option/',$filename);
-            $option->option3_image = $filename;
+            $file3= $request->file('option3_image');
+            $extension3 = $file3->getClientOriginalExtension();
+            $filename3 = time().'.'.$extension3;
+            $file3->move('Option/',$filename3);
+            $option->option3_image = $filename3;
         
         }     
         if($request->hasfile('option4_image'))
         {
-            $file= $request->file('option4_image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('Option/',$filename);
-            $option->option4_image = $filename;
+            $file4= $request->file('option4_image');
+            $extension4 = $file4->getClientOriginalExtension();
+            $filename4 = time().'.'.$extension4;
+            $file4->move('Option/',$filename4);
+            $option->option4_image = $filename4;
         
         }                   
             $option->save();
         }
-        return redirect()->back()->with('success', 'Added Successfully.');
+        return redirect()->back()->with('success', 'Image Question Added Successfully.');
     }
 
 
