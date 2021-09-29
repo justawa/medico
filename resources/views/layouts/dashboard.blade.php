@@ -256,12 +256,12 @@
                   <p>Add Questions</p>
                 </a>
               </li>
-              {{-- <li class="nav-item">
+              <li class="nav-item">
                 <a href="{{ route('test.ran') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Random Questions</p>
                 </a>
-              </li> --}}
+              </li>
               <li class="nav-item">
                 <a href="{{ route('test.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

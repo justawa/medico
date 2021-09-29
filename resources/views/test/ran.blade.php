@@ -13,22 +13,13 @@
             <!-- /.card-header -->
             <form method="POST" action="{{ route('test.ran') }}">
               @csrf
-              <div class="card-body">   
+              <div class="card-body">          
+               
                 <div class="form-group @error('test') has-danger @enderror">
-                  <label class="col-form-label" for="test">Test</label>
-                  <select class="form-control @error('test') is-invalid @enderror" id="test" name="test">
-                    @foreach($tests as $test)
-                    <option value={{ $test->id }}>{{ $test->name }}</option>
-                    @endforeach
-                  </select>
-                  @error('test') <span class="invalid-feedback">{{ $message }}</span> @enderror
-                </div>
-
-                {{-- <div class="form-group @error('test') has-danger @enderror">
                   <label class="col-form-label" for="test">No Of Question</label>                  
-                  <input class="form-control" type="text" name="number" >
-                </div> --}}
-                <button type="submit" class="btn btn-primary">Add Random Question</button>
+                  <input class="form-control" type="text" name="numb" >
+                </div>
+                <button type="submit" class="btn btn-primary"> Next </button>
               </form>
                 
                

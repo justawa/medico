@@ -125,7 +125,7 @@ class TestController extends Controller
             return redirect()->back()->with('failure', 'Failed to add test');
         }
     }
-
+    
     public function update_status(Request $request, $id)
     {
         $test = Test::find($id);
@@ -144,21 +144,16 @@ class TestController extends Controller
 
         // $testid= Test::all()->last();        
         // $num=$testid->total_questions;
-        $id= $request->test;
-        $raj = DB::table('question_test')
-        // ->where("test_id",'=',1)
-        ->join('tests','question_test.test_id','=','tests.id')
-        ->get();
-        // dd($raj);
-        // $num=$request->number;
+        $tests = Test::all();
+        $num=$request->numb;
+      
+        $result =
+         Question::where('active', 1)            
+        ->orderBy('id', 'desc')
+        ->take(400)
+        ->get()
+        ->random($num);       
 
-
-        $result = $raj::all()
-    ->orderBy('id', 'desc')
-    ->take(400)
-    ->get()
-    ->random(3);
-    
-    return view('test.ran', compact('result','raj', 'subjects', 'tests','num'));
+    return view('test.randon_question', compact('result','tests'));
     }
 }

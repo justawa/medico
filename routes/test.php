@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\question_testController;
+
 
 Route::get('/tests', [TestController::class, 'index'])->name('test.index');
 Route::get('/tests/create', [TestController::class, 'create'])->name('test.create');
@@ -14,6 +16,8 @@ Route::post('test/questions', [TestController::class, 'store_test_questions'])->
 
 Route::get('/rantests', [TestController::class, 'index3'])->name('test.ran');
 Route::post('/rantests', [TestController::class, 'randomData'])->name('test.ran');
+Route::post('test/ques', [question_testController::class, 'store'])->name('test.question.store');
+
 
 // dd
 Route::get('/dd', [TestController::class, 'index2'])->name('test.dd');

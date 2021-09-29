@@ -203,34 +203,24 @@
 				            <label class="col-form-label">City</label>
                     <input type="text" class="form-control" placeholder="Enter Your City" id="city" name="city" value="" required autocomplete="off">
                       </div>
-               
-			   
+               			   
                <div class="form-group">
 				          <label class="col-form-label">State</label>
                    <input type="text" class="form-control" placeholder="Enter Your State" id="state" name="state" value="" required autocomplete="off">
-               </div>
-               
-               
+               </div>                              
                
 			       <div class="form-group">
 				        <label class="col-form-label">Country</label>
                    <input type="text" class="form-control" placeholder="Enter Your Country" id="country" name="country" value="" required autocomplete="off">
                </div>
-               
-			   
-               
+               			                  
 			     <div class="form-group">
 				<label class="col-form-label">Zipcode</label>
                    <input type="text" class="form-control" placeholder="Enter Zipcode" id="city" name="zipcode" value="" required autocomplete="off">
                </div>
-               
-
-         
-               @endif
-              
-			   
-			  
-				   
+                        
+               @endif              
+			  				   
                  <button type="submit" class="btn btn-primary">update Profile</button>
 				 </div>
                 
