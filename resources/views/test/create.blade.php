@@ -48,17 +48,6 @@
       @error('package') <span class="invalid-feedback">{{ $message }}</span> @enderror
       </div>
 
-      {{-- Subject --}}
-      <div class="form-group @error('subject') has-danger @enderror">
-      <label class="col-form-label" for="package">Subject</label>
-      <select class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject">                   
-      @foreach($subjects as $subject)
-      <option @if(old('subject', $test->subjectid) == $subject->id) selected="selected" @endif value={{ $subject->id }}> {{ $subject->name }}</option>
-      @endforeach
-      </select>
-      @error('subject') <span class="invalid-feedback">{{ $message }}</span> @enderror
-      </div>
-
       {{--name  --}}
       <div class="form-group @error('name') has-danger @enderror">
       <label class="col-form-label" for="name">Name</label>

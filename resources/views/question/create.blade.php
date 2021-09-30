@@ -39,7 +39,20 @@
                     @csrf
                     <label class="radio-inline"><input type="radio" name="questionCategory" value="0">&nbsp;Text Wise</label>&nbsp;&nbsp;
                     <label class="radio-inline"><input type="radio" name="questionCategory" value="1" checked>&nbsp;Image Wise</label>                
-                      <div class="form-group @error('subject') has-danger @enderror">
+                    
+                    <div class="form-group @error('course') has-danger @enderror">
+                      <label class="col-form-label" for="course">Course</label>
+                      <select class="form-control @error('course') is-invalid @enderror" id="course" name="course">
+                        
+                      @foreach($courses as $course)
+                          <option value="{{ $course->id }}">{{ $course->name }}</option>
+                          @endforeach
+                        
+                      </select>
+                      @error('course') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                  </div>
+
+                    <div class="form-group @error('subject') has-danger @enderror">
                           <label class="col-form-label" for="subject">Subject</label>
                           <select class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject">
                               @foreach($subjects as $subject)
@@ -137,7 +150,18 @@
                     <label class="radio-inline"><input type="radio" name="questionCategory" value="0" checked>&nbsp;Text Wise</label>&nbsp;&nbsp;
                     <label class="radio-inline"><input type="radio" name="questionCategory" value="1">&nbsp;Image Wise</label>
                 
-                       
+                    <div class="form-group @error('course') has-danger @enderror">
+                      <label class="col-form-label" for="course">Course</label>
+                      <select class="form-control @error('course') is-invalid @enderror" id="course" name="course">
+                        
+                      @foreach($courses as $course)
+                          <option value="{{ $course->id }}">{{ $course->name }}</option>
+                          @endforeach
+                        
+                      </select>
+                      @error('course') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                  </div>
+
                       <div class="form-group @error('subject') has-danger @enderror">
                           <label class="col-form-label" for="subject">Subject</label>
                           <select class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject">

@@ -86,12 +86,8 @@
                         <td>{{ $ticket->title }}</td>                
                         <td>{{ $ticket->description }}</td>                      
                         <td>{{$ticket->reply}}</td>
-                        <td>{{ $ticket->subject }}</td>
-                        {{-- <td>{{ $ticket->attachment }}</td> --}}
-                        <td>{{ $ticket->description }}</td>
-                      
-
-                      <td>{{$ticket->reply}}</td>
+                        {{-- <td>{{ $ticket->subject }}</td> --}}
+                        {{-- <td>{{ $ticket->attachment }}</td> --}}                                                          
 
                       <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#replyTicket">Reply</button></td>
                       <td><a href="{{ route('user.chat', $user->id)}}">View</a></td>

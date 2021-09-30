@@ -9,6 +9,7 @@ use App\Http\Requests\QuestionRequest;
 use App\Models\Option;
 use App\Models\Question;
 use App\Models\Subject;
+use App\Models\Course;
 
 class QuestionController extends Controller
 {
@@ -22,16 +23,17 @@ class QuestionController extends Controller
     public function create(Question $question, Option $option)
     {   
        // $questions = Question::all();
+       $courses = Course::where('active', 1)->get();
         $subjects = Subject::where('active', 1)->get();
-        return view('question.create', compact('subjects','question','option'));
+        return view('question.create', compact('subjects','question','option','courses'));
        // return $this->edit(new Question());
     }
 
     public function creat(Question $question, Option $option)
     {   
-       
+        $courses = Course::where('active', 1)->get();       
         $subjects = Subject::where('active', 1)->get();
-        return view('question.imagetype', compact('subjects','question','option'));
+        return view('question.imagetype', compact('subjects','question','option','courses'));
        
     }
 
@@ -53,6 +55,7 @@ class QuestionController extends Controller
         $question->level = $request->level;
         $question->score = $request->score;
         $question->subject_id = $request->subject;
+        $question->course_id = $request->course;
         $question->imagestatus = $request->questionCategory;
        
         if($question->save())
@@ -76,6 +79,7 @@ class QuestionController extends Controller
         $question=new question;
         $option= new option;
         $question->subject_id = $request->subject;
+        $question->course_id = $request->course;
         $question->level = $request->level;
         $question->score = $request->score;
         $question->imagestatus = $request->questionCategory;
@@ -153,6 +157,8 @@ class QuestionController extends Controller
         $question->level = $request->level;
         $question->score = $request->score;
         $question->subject_id = $request->subject;
+        $question->course_id = $request->course;
+
         
         if($question->save())
         {
