@@ -15,8 +15,8 @@
             <table id="dataTable" class="table table-head-fixed text-nowrap">
               <thead>
                 <tr>
+                 
                     <th>S.No</th>
-                    {{-- <th>ID</th> --}}
                     <th> Transaction ID </th>
                     <th> Package Name </th>
                     <th> Student Id </th>
@@ -31,14 +31,13 @@
              
             
 
-              <?php 
-              $count=0;
-              ?>
+              <?php $count=0;  ?>           
 
              <tbody>
                     @foreach ($payment as $item)
 
                 <tr>
+                  
                    <td>{{$count=$count+1}}</td> 
                    {{-- <td>{{$item->id}}</td> --}}
                    <td>{{$item->tid }}</td>

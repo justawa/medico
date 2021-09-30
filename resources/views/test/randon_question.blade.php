@@ -1,14 +1,17 @@
 @extends('layouts.dashboard')
-@section('title', 'Add Questions')
+@section('title', 'Random Questions')
 @section('content')
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Randomly Add Questions to the Test</h3>
+              <h3 class="card-title">Add Random Questions </h3>
             </div>
             <!-- /.card-header -->
+            @if (session('status'))
+<h6 class="alert alert-success">{{session('status')}}</h6>
+@endif
             <form method="POST" action="{{ route('test.question.store') }}">
               @csrf
               <div class="card-body">  

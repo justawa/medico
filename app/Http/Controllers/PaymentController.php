@@ -38,8 +38,7 @@ class PaymentController extends Controller
     }
     public function export() 
     {
-        $filename = "account".time().'.'."xlsx";
-        return Excel::download(new UsersExport, $filename);
+        return Excel::download(new UsersExport, 'PaymentDetail.xlsx');
     }
   
 }

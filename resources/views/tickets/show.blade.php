@@ -20,11 +20,11 @@
                 </tr>
               </thead>
               <tbody>
-                @if($users->count() > 0)
-                  @foreach($users as $user)
+                @if($tick->count() > 0)
+                  @foreach($tick as $tick)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td><a href="{{ route('user.tickets', $user->id) }}">{{ $user->name }}</a></td>                                       
+                    <td><a href="{{ route('user.tickets', $tick->id) }}">{{ $tick->name }}</a></td>                                       
                   </tr>
                   @endforeach
                 @else

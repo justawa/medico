@@ -25,7 +25,7 @@ class question_testController extends Controller
 
         
 
-        return redirect()->back();
+        return redirect()->back()->with('status','Questions Added Successfully');
 
     }
    

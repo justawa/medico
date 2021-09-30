@@ -269,9 +269,9 @@ class UserController extends Controller
         }
     }
 public function sideticket(){
-    
-    $users = User::where('type', 'student')->get();
-    return view('tickets.show', compact('users'));
+    $tick= DB::table('tickets')
+    ->join('users', 'users.id','=','tickets.user_id')->get();
+    return view('tickets.show', compact('tick'));
 }
 
 }

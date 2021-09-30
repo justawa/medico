@@ -141,16 +141,14 @@ class TestController extends Controller
         }
     }
     public function randomData(Request $request){
-
-        // $testid= Test::all()->last();        
-        // $num=$testid->total_questions;
+       
         $tests = Test::all();
         $num=$request->numb;
       
         $result =
          Question::where('active', 1)            
         ->orderBy('id', 'desc')
-        ->take(400)
+        ->take(900)
         ->get()
         ->random($num);       
 
